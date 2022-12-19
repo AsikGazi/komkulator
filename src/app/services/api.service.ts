@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   headers: any
-  bearer :any = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTUFYiLCJleHAiOjE2NzA5MjU5MTIsImlhdCI6MTY3MDkwNzkxMn0.FGvMjThDclAV8FqxlfSYyE1DQzO7JvVsoCsIbnGv6Gg"
   br : any
   constructor(private http : HttpClient) { }
 
