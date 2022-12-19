@@ -1,0 +1,57 @@
+mat-panel-title{
+    color: rgb(0, 0, 0);
+    text-shadow: #34ade9;
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+.table-container-top2 {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: #0276c0;
+    padding: 10px 15px ;
+    color: #ffffff;
+    width: 100%;
+    border-radius: 10px;
+}
+Table{
+    width: 100%;
+    height: 100%;
+    text-size-adjust: 10px;
+    box-sizing: border-box;
+}
+.w-70{
+    width: 65%;
+    height: 35px;
+    text-align: left;
+    padding-left: 150px;
+}
+.text-align-center{
+    text-align: center;
+    height: 25px;
+}
+.text-table-value{
+    padding-left: 100px;
+    padding-top: 10px;
+    height: 20px;
+}
+.form-control{
+    text-align: center;
+}
+mat-card{
+    width: 56%;
+    height: auto;
+    margin: auto;
+}
+mat-card-content{
+    margin: auto;
+    padding-top: 30px;
+}
+hr.new1 {
+    border-top: 3px solid rgb(2, 2, 2);
+  }
+.boader{
+    width: 200px;
+    margin: auto;
+    text-align: center;
+}

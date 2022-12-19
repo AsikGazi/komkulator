@@ -1,0 +1,284 @@
+mat-card{
+    margin: 5%;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    margin-top: 5%;
+}
+.blue-ribon{
+    background: #5fa9d7;
+    padding: 20px 15px;
+    color: #ffffff;
+    border-radius: 0px;
+    margin-top: 1px;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 23px;
+}
+.blue-ribon2 {
+  background: #5fa9d7;
+  padding: 1px 1px;
+  color: #ffffff;
+  border-radius: 4px;
+  margin-top: -16%;
+}
+.content-eliment{padding: 10px;}
+.txt-box1{
+    display: block;
+    border: 1px solid #ccc;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 10px;
+    float: left;
+    margin: 0px 0;
+    width: 86%;
+    height: 31px;
+    text-align: left;
+    font-size: 26px;
+}
+.blue-txt-box1{
+    display: block;
+    background-color: #0276c0;
+    color: #ffffff;
+    border: 1px solid #0276c0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 10px;
+    float: left;
+    margin: 0px 0;
+    width: 8%;
+    height: 31px;
+    text-align: center;
+    font-size: 26px;
+}
+.content-eliment .form-group{margin-bottom: 0px; }
+/* .input-box{margin: 0 11rem;} */
+
+    table {
+        display: table;
+        border-collapse: separate;
+        text-indent: initial;
+        border-spacing: 3px;
+        padding-left: 1%;
+        margin: 0px;
+        box-sizing: border-box;
+        
+    }
+    .table-container-top2{border-top-left-radius:5px ;border-top-right-radius:5px ; background:#0276c0 ; padding: 10px 15px !important; color: #ffffff;}
+    .table-container-top2 th{padding: 1em; width: 90px;
+        padding-top: 5px;
+        padding-bottom: 5px;}
+   
+          .form-horizontal .form-group:before{    display: table;
+            content: " ";}
+            .customers {
+                font-family: Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+              }
+              
+              #customers td, #customers th {
+                border: 1px solid #ffffff;
+                padding: 8px;
+              }
+              
+              #customers tr:hover {background-color: #cfcccc;}
+              
+              #customers th {
+                padding-top: 6px;
+                padding-bottom: 5px;
+                text-align: center;
+                width: 125px;
+                background-color: #3f8de6;
+                color: rgb(255, 255, 255);
+              }
+.button{
+    width: 150px;
+}
+.occu{
+    background-color: #5fa9d7;
+    text-align: left;
+    width: 100%;
+}
+.formFild{
+    width: 150px;
+}
+mat-grid-tile{
+        top: 0px;
+        left: 20px;
+        right: 20px;
+        bottom: 0;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 0%;
+        padding: 0px;
+        margin: 0px;
+        box-shadow: #ccc;
+}
+mat-grid-tile-content{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+    padding: 0;
+    margin: 0;
+}
+
+.header1{
+        width: 100%;
+        display: flex;
+        background-color: #3f8de6;
+        color: #ffffff;
+        border-radius: 10px;
+        margin-top: 20px;
+        padding-top: 10px;
+}
+.header2{
+    width: 100%;
+    display: flex;
+    background-color:#3f8de6;
+
+    color: #ffffff;
+    border-radius: 10px;
+    padding-top: 10px;
+}
+.fromFild{
+    width: 80%;
+    padding-top: 5%;
+}
+.fromContent{
+    width: 98%;
+    padding-top: 3%;
+}
+.lableFrom{
+    text-align: left;
+    /* padding-right: 20%; */
+    font-size: 1.3em;
+}
+.inputFrom{
+    text-align: right;
+    margin: -6% 5%;
+}
+.inputFrom2{
+    text-align: right;
+    margin: -7% 6%;
+    padding-bottom: 0%;
+}
+.vertical-line{
+    display: inline-block;
+    border-left: 3px solid rgb(2, 2, 2);
+    margin: 42px 0px;
+    /* padding-top: 10%; */
+    height: 220px;
+}
+.resultDiv{
+    background: #5fa9d7;
+    padding: 1px 1px;
+    color: #ffffff;
+    border-radius: 4px;  
+}
+.boader{
+    padding-top: 4%;
+    padding-bottom: 6%;
+}
+.resultDiv{
+    background: #5fa9d7;
+    padding: 6px 40px;
+    /* color: #ffffff; */
+    border-radius: 12px;
+    /* margin-top: 38px; */
+    margin-bottom: 15px;
+    /* text-align: left;*/
+}
+.resltLable{
+    text-align: left;
+    font-size: 1.5em;
+}
+.resltValue{
+    text-align: right;
+    font-size: 1.5em;
+}
+.buttonDiv{
+    margin: 4%;
+}
+/*..........................*/
+.blueSubHeader{
+    background-color: #3f8de6;
+    color: #ffffff;
+    border-radius: 10px;
+}
+h2{
+    font: 450 16px/30px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 13px -5px 12px;
+}
+.thirdTabTextFild{
+    width: 70%;
+}
+.no3Card{
+    height: 10%;
+}
+.card2{
+    margin: 0%;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0%;
+    margin-bottom: -20%;
+}
+.subTit{
+    background-color: #cfcccc;
+}
+.subHeader{
+    height: 10px;
+}
+.resltLable1{
+    padding-top: 10px;
+    padding-left: 10px;
+    text-align:left;
+}
+.resultVale1{
+    padding-top: 10px;
+    padding-right: 10px;
+    text-align: right;
+}
+.mat-grid-list {
+    display: block;
+    position: relative;
+    margin-bottom: -168px;
+}
+.content-eliment1{
+    padding-left: 10%;
+}
+.tableHost{
+    padding-left: 18%;
+}
+.tableHost2{
+    padding-left: 8%;
+}
+.tableHost3{
+    padding-left: 12%;
+}
+.coll2{
+    text-align: left;
+
+    font: 403 22px/28px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 19px 59px 16px;
+}
+.maincard{
+    margin: 5%;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    margin-top: 0%; 
+}
+h1 {
+    font: 399 20px/19px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 0 0 16px;
+}

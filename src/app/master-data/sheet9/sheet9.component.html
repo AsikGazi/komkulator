@@ -1,0 +1,530 @@
+<mat-card>
+    <img src="../../../assets/img/komkulator.svg" alt="">
+    <hr class="new1">
+    <mat-card-content>
+        <mat-accordion class="newCard">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+    
+                <mat-panel-title>
+                    Company Type
+                </mat-panel-title>
+               
+              </mat-expansion-panel-header>
+              <table>
+                <thead>
+                    <tr class="table-container-top2">
+                        <th scope="col" class="w-70">Name</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-table-value" data-label="NA">Start-up</td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-table-value" data-label="NA">MSME</td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-table-value" data-label="NA">Corporate</td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="boader">
+                <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+                <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <button mat-raised-button class="button" color="primary" type="button">Check</button>
+              </div>
+            </mat-expansion-panel>
+    
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Company Revenue
+                </mat-panel-title>
+                
+              </mat-expansion-panel-header>
+              <table>
+                <thead>
+                    <tr class="table-container-top2">
+                        <th scope="col" class="w-70">Name</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                    <tr>
+                        <td class="text-table-value" data-label="NA"> &#60; 50 Cr </td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1.25">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-table-value" data-label="NA">50-100 Cr</td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1.25">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-table-value" data-label="NA">100Cr-250Cr</td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1.25">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="text-table-value" data-label="NA">250Cr - 500 Cr</td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1.25">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-table-value" data-label="NA">501 Cr - 2500 Cr</td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1.25">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-table-value" data-label="NA">2501Cr - 5000Cr</td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1.25">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-table-value" data-label="NA">5000 Cr
+                        </td>
+                        <td data-label="NA">
+                        <div class="input-box text-align-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Text input" value="1.25">
+                            </div>
+                        </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="boader">
+                <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+                <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <button mat-raised-button class="button" color="primary" type="button">Check</button>
+              </div>
+            </mat-expansion-panel>
+    
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+    
+          <mat-panel-title>
+            Headcount
+          </mat-panel-title>
+           
+        </mat-expansion-panel-header>
+        <table>
+            <thead>
+                <tr class="table-container-top2">
+                    <th scope="col" class="w-70">Name</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-table-value" data-label="NA">&#60;100</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">100-250</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">250-500</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">500-1000</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">1000-5000</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">5000 & above</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="boader">
+            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button mat-raised-button class="button" color="primary" type="button">Check</button>
+          </div>
+            </mat-expansion-panel>
+    
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Legal structure of the Organisation
+          </mat-panel-title>
+           
+        </mat-expansion-panel-header>
+        <table>
+            <thead>
+                <tr class="table-container-top2">
+                    <th scope="col" class="w-70">Name</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-table-value" data-label="NA">Listed</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.3">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">Unlisted</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">1-5 States</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.25">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">6-10 States</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="2.25">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">11-15 States</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="3">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">16-20 States 1</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="3">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">&#62;20 Sattes</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="7">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="boader">
+            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button mat-raised-button class="button" color="primary" type="button">Check</button>
+          </div>
+             </mat-expansion-panel>
+    
+             <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Legal structure of the Organisation
+          </mat-panel-title>
+           
+        </mat-expansion-panel-header>
+        <table>
+            <thead>
+                <tr class="table-container-top2">
+                    <th scope="col" class="w-70">Name</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-table-value" data-label="NA">Public Limited Company</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">Private Limited Company</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="boader">
+            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button mat-raised-button class="button" color="primary" type="button">Check</button>
+          </div>
+            </mat-expansion-panel>
+    
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            No of Entites
+          </mat-panel-title>
+           
+        </mat-expansion-panel-header>
+        <table>
+            <thead>
+                <tr class="table-container-top2">
+                    <th scope="col" class="w-70">Name</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-table-value" data-label="NA">1 entity</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">2 Entities</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.2">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">3-5 Entities</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.4">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">5-6 Entiies</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.65">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">7-10 Entities</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="2">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">11-15 entities</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="2.5">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">More than 15 entities</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="3">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="boader">
+            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button mat-raised-button class="button" color="primary" type="button">Check</button>
+          </div>
+            </mat-expansion-panel>
+    
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+             No of Entites
+          </mat-panel-title>
+           
+        </mat-expansion-panel-header>
+        <table>
+            <thead>
+                <tr class="table-container-top2">
+                    <th scope="col" class="w-70">Name</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-table-value" data-label="NA">More Regulated</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1.25">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-table-value" data-label="NA">Less Regulated</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Text input" value="1">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="boader">
+            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button mat-raised-button class="button" color="primary" type="button">Check</button>
+          </div>
+             </mat-expansion-panel>
+    
+          </mat-accordion>
+    </mat-card-content>  
+      
+</mat-card>
+
+

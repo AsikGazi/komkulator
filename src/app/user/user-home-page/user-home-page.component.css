@@ -1,0 +1,45 @@
+mat-card{
+    max-width: 70%;
+    height: fit-content;
+    margin: 0em auto;
+    text-align: center;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+}
+.card1{
+    background-image: url("../../../assets/img/login-inner-bg.svg");
+}
+.komkulator{
+    display:flex;
+    padding-top: 20px;
+}
+.mat-form-field{
+    width: 260px;
+}
+.submitbtn{
+    padding-bottom: 15px;
+}
+.questionMarkButton{
+    width: 0px;
+    color: rgb(51, 194, 238);
+    border-color: rgb(253, 254, 255);
+}
+.typeOfIndustryFormFil{
+    width: 255px;
+}
+.mat-stroked-button{
+    min-width: 0px;
+    padding: 0 0px;
+}
+.mat-icon {
+    height: 40px;
+}
+.totalCalculatedPrice{
+    background-color: #3f51b5;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    padding-top: 10px;
+   
+}

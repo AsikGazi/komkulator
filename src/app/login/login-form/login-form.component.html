@@ -1,0 +1,69 @@
+<mat-card>
+
+  <mat-grid-list cols="2" rowHeight="1:1">
+
+    <mat-grid-tile class="leftcard">
+      <mat-card-content>
+        <p class="login-img"><img src="../../../assets/img/logtext.svg" alt="No img" width="90px"></p>
+        
+        <div class="text">
+          <h1 style="color: hsl(219, 100%, 73%); text-align: left;  padding-left: 8%;">Welcome to</h1>
+          <h2 style="color: hsl(0, 0%, 100%); text-align: left;  padding-left: 8%;">Pricing Calculater</h2>
+        </div>
+        
+        <p>&nbsp; &nbsp; &nbsp;</p>
+
+          <p>&nbsp; &nbsp; &nbsp; </p>
+
+         <p class="logo">
+          <img src="../../../assets/img/image-komsymbol.svg" alt="No img" width="200px">
+        </p>
+      </mat-card-content>
+    </mat-grid-tile>
+    
+
+
+    <mat-grid-tile>
+      <mat-card-content>
+        
+          <p class="komkulater-img"><img src="../../../assets/img/komkulator.svg" alt=""></p>
+        
+        <form [formGroup]= "loginForm" (ngSubmit)="login()">
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-icon matPrefix>account_circle_outlined </mat-icon>
+            <mat-label>&nbsp;&nbsp; Enter your username</mat-label>
+            <input matInput formControlName="userName" class="form-control" type="email" required>
+            
+          </mat-form-field>
+        </div>
+
+          <span><br></span>
+
+        <div class="form-group">
+          <mat-form-field >
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-label> &nbsp;&nbsp;Enter your password</mat-label> 
+            <input matInput formControlName="userPassword" class="form-control" type="password" required>
+           
+            <!-- <input matInput formControlName="userPassword" class="form-control" type="password" required [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (dblclick)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button> -->
+
+          </mat-form-field>
+        </div>
+
+          <span><br></span>
+
+          <br>
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+         </form>
+
+         <br>
+         <mat-divider></mat-divider>
+      </mat-card-content>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
