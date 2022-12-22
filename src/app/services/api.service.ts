@@ -41,23 +41,23 @@ export class ApiService {
             
 
   getEntitieListApi():Observable<any>{
-    console.log("headers >>>", this.bearer);
+    console.log("headers >>>", this.headers);
     return this.http.get<any>(`http://172.16.0.196:8080/getEntites`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getIndustryTypeListApi():Observable<any>{
-    console.log("headers >>>", this.bearer);
+    console.log("headers >>>", this.headers);
     return this.http.get<any>(`http://172.16.0.196:8080/getIndustryType`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getLegalStructureListApi():Observable<any>{
-    console.log("headers >>>", this.bearer);
+    console.log("headers >>>", this.headers);
     return this.http.get<any>(`http://172.16.0.196:8080/getLegalStructure`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getListingStatusListApi():Observable<any>{
-    console.log("headers >>>", this.bearer);
+    console.log("headers >>>", this.headers);
     return this.http.get<any>(`http://172.16.0.196:8080/getListingStatus`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getStatusListApi():Observable<any>{
-    console.log("headers >>>", this.bearer);
+    console.log("headers >>>", this.headers);
     return this.http.get<any>(`http://172.16.0.196:8080/getStates`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   // ...................................................
