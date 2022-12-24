@@ -13,10 +13,8 @@ export class ApiService {
   private getHeaders(token: any): HttpHeaders{
      this.headers = {
       "Authorization" : token, 
-      "Accept": 'text/html, application/xhtml+xml, */*', 
-      "Content-Type": 'text/html; charset=utf-8',
     }
-    console.log("header token--on service page---",this.headers);
+    console.log("header token--on service page---",this.headers.Authorization);
     return new HttpHeaders(this.headers)
   }
   
@@ -41,26 +39,32 @@ export class ApiService {
             
 
   getEntitieListApi():Observable<any>{
-    console.log("headers >>>", this.headers);
-    return this.http.get<any>(`http://172.16.0.196:8080/getEntites`,{ headers: this.getHeaders(this.headers.Authorization)});
+    console.log("getEntitieListApi token >>>", this.headers.Authorization);
+    return this.http.get<any>(`http://172.16.0.196:8080/getEntities`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getIndustryTypeListApi():Observable<any>{
-    console.log("headers >>>", this.headers);
+    //console.log("headers >>>", this.headers);
     return this.http.get<any>(`http://172.16.0.196:8080/getIndustryType`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getLegalStructureListApi():Observable<any>{
-    console.log("headers >>>", this.headers);
+    //console.log("headers >>>", this.headers);
     return this.http.get<any>(`http://172.16.0.196:8080/getLegalStructure`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getListingStatusListApi():Observable<any>{
-    console.log("headers >>>", this.headers);
+    //console.log("headers >>>", this.headers);
     return this.http.get<any>(`http://172.16.0.196:8080/getListingStatus`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getStatusListApi():Observable<any>{
-    console.log("headers >>>", this.headers);
+    //console.log("headers >>>", this.headers);
     return this.http.get<any>(`http://172.16.0.196:8080/getStates`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
-  // ...................................................
+  // ................................................... 
 
+
+//...........calculation API.................
+  calculationApi(formData: any){
+    console.log("calculationApi",formData)
+    return this.http.post<any>(`http://172.16.0.196:8080/calculatePrice`,formData,{headers: this.getHeaders(this.headers.Authorization)});
+  }
 
 }

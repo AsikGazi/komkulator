@@ -14,12 +14,12 @@ export class UserHomePageComponent implements OnInit{
 
   moduleList = [ "le","ehs","industrySpecific","fiscal","corporate",];
   selectedModules : any;
-  // selectedModules =({
-  //   le: [],
-  //   ehs: [],
-  //   industrySpecific: [],
-  //   fiscal: [],
-  //   corporate: []
+  // selectedModules = this.FormBuilder.group({
+  //   le: [''],
+  //   ehs: [''],
+  //   industrySpecific: [''],
+  //   fiscal: [''],
+  //   corporate: ['']
   // })
   
 
@@ -33,13 +33,10 @@ export class UserHomePageComponent implements OnInit{
   // private static productId ='1';
   // private static productName ='1';
 
-  leValue = false;
-  ehsVlaue = false;
-  industrySpecificValue = false;
-  fiscalValue = false;
-  corporateValue = false;
  
   calculationForm:any = FormGroup;
+  calcultedOneTimeFee: any;
+  monthlySubscription: any;
 
  
 
@@ -47,11 +44,11 @@ export class UserHomePageComponent implements OnInit{
    
   ngOnInit(): void {
    this.intCalculationForm();
-  //  this.getEntitieList();
-  //  this.getIndustryTypeList();
-  //  this.getLegalStructureList();
-  //  this.getListingStatusList();
-  //  this.getStatusList();
+   this.getEntitieList();
+   this.getIndustryTypeList();
+   this.getLegalStructureList();
+   this.getListingStatusList();
+   this.getStatusList();
   }
 
 
@@ -59,7 +56,7 @@ export class UserHomePageComponent implements OnInit{
 
   intCalculationForm(){
     this.calculationForm = this.FormBuilder.group({
-      nameOfOrganisation: [''],
+      nameOfOrganisation:[''],
       productId: ['1'],
       productName : ['Komrisk'],
       noOfEntities: [''],
@@ -67,23 +64,50 @@ export class UserHomePageComponent implements OnInit{
       typeOfIndustry: [''],
       organisationLegalStructure: [''],
       organisationListingStatus: [''],
-      le: [this.leValue],
-      ehs: [],
-      industrySpecific: [],
-      fiscal: [],
-      corporate: [],
+      le: [false],
+      ehs: [false],
+      industrySpecific: [false],
+      fiscal: [false],
+      corporate: [false],
       statesRequireComplianceModules: [''],
       noOfLicenseRequired: [''],
       contractTerm: [''],
     })
   }
 onCalculationFormSubmit(){
-  console.log("----",this.selectedModules);
-  // if(this.selectedToppings.find('le')){
-  //   alert("hii");
-  // }
+  console.log("----",this.calculationForm.value.le);
+  if(this.selectedModules.includes('le')){
+    this.calculationForm.value.le=true;
+  }else{this.calculationForm.value.le=false;}
+  if(this.selectedModules.includes('ehs')){
+    this.calculationForm.value.ehs=true;
+  }else{this.calculationForm.value.ehs=false;}
+  if(this.selectedModules.includes('industrySpecific')){
+    this.calculationForm.value.industrySpecific=true;
+  }else{this.calculationForm.value.industrySpecific=false;}
+  if(this.selectedModules.includes('fiscal')){
+    this.calculationForm.value.fiscal=true;
+  }else{this.calculationForm.value.fiscal=false;}
+  if(this.selectedModules.includes('corporate')){
+    this.calculationForm.value.corporate=true;
+  }else{this.calculationForm.value.corporate=false;}
+
+ console.log("Final form-",this.calculationForm.value);
+  this.calculationFunction(this.calculationForm.value);
+  //document.getElementById('calDiv').style.display = "block";
 }
 
+calculationFunction(formValue: any){
+  console.log("this is calculationFunction--")
+  if(formValue)
+  this.apiService.calculationApi(formValue).subscribe(result =>{
+    console.log("Result--Final--",result);
+    this.calcultedOneTimeFee = result.oneTimeFee;
+    this.monthlySubscription = result.monthlySubscription;
+    console.log("calcultedOneTimeFee-",this.calcultedOneTimeFee);
+    console.log("monthlySubscription-",this.monthlySubscription);
+  })
+}
 
 
 
@@ -97,35 +121,35 @@ onCalculationFormSubmit(){
     console.log("entityList---",this.entities);
     this.apiService.getEntitieListApi().subscribe(res=>{
       this.entities = res;
-      console.log("under the api call of getEntiteList-",this.entities);
+      console.log("under the api call of getEntitieListApi-",this.entities);
     })
   }
 
   getIndustryTypeList(){
     this.apiService.getIndustryTypeListApi().subscribe(res=>{
       this.typeOfIndust = res;
-      console.log("under the api call of getIndustryTypeList-",this.typeOfIndust);
+      console.log("under the api call of getIndustryTypeListApi-",this.typeOfIndust);
     })
   }
 
   getLegalStructureList(){
     this.apiService.getLegalStructureListApi().subscribe(res=>{
       this.legalStracture = res;
-      console.log("under the api call of getIndustryTypeList-",this.legalStracture);
+      console.log("under the api call of getLegalStructureListApi-",this.legalStracture);
     })
   }
 
   getListingStatusList(){
     this.apiService.getListingStatusListApi().subscribe(res=>{
       this.listingStatus = res;
-      console.log("under the api call of getIndustryTypeList-",this.listingStatus);
+      console.log("under the api call of getListingStatusListApi-",this.listingStatus);
     })
   }
 
   getStatusList(){
     this.apiService.getStatusListApi().subscribe(res=>{
       this.states = res;
-      console.log("under the api call of getIndustryTypeList-",this.states);
+      console.log("under the api call of getStatusListApi-",this.states);
     })
   }
 
