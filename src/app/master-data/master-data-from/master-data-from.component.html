@@ -20,97 +20,45 @@
                </div>
             </div>
             <mat-card>
-               <table id="customers">
-                  <thead>
-                     <tr class="table-container-top2">
-                        <th scope="col">Resource Mix</th>
-                        <th scope="col">NA</th>
-                        <th scope="col">Ratio</th>
-                        <th scope="col">Number of Man Days</th>
-                        <th scope="col">Man Month</th>
-                        <th scope="col">Monthly CTC</th>
-                        <th scope="col">NA</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td data-label="Resource Mix">Supervisor</td>
-                        <td data-label="NA">&nbsp;</td>
-                        <td data-label="Ratio">&nbsp;</td>
-                        <td data-label="Number of Man Days">&nbsp;</td>
-                        <td data-label="Man Month">&nbsp;</td>
-                        <td data-label="Monthly CTC">&nbsp;</td>
-                        <td data-label="NA">&nbsp;</td>
-                     </tr>
-                     <tr>
-                        <td data-label="NA">&nbsp;</td>
-                        <td data-label="Resource Mix">Partner</td>
-                        <td data-label="Ratio">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Text input" value="0.05">
-                           </div>
-                        </td>
-                        <td data-label="Number of Man Days">12.98 </td>
-                        <td data-label="Man Month">0.71</td>
-                        <td data-label="Monthly CTC">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                           </div>
-                        </td>
-                        <td data-label="NA">94,838</td>
-                     </tr>
-                     <tr>
-                        <td data-label="NA">&nbsp;</td>
-                        <td data-label="Resource Mix">AVP/VP</td>
-                        <td data-label="Ratio">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Text input" value="0.2">
-                           </div>
-                        </td>
-                        <td data-label="Number of Man Days">51.91 </td>
-                        <td data-label="Man Month">2.83</td>
-                        <td data-label="Monthly CTC">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                           </div>
-                        </td>
-                        <td data-label="NA">3,77,530</td>
-                     </tr>
-                     <tr>
-                        <td data-label="NA">&nbsp;</td>
-                        <td data-label="Resource Mix">Manager/Sr. Mngr</td>
-                        <td data-label="Ratio">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Text input" value="0.35">
-                           </div>
-                        </td>
-                        <td data-label="Number of Man Days">90.84 </td>
-                        <td data-label="Man Month">4.96</td>
-                        <td data-label="Monthly CTC">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                           </div>
-                        </td>
-                        <td data-label="NA">6,60,678</td>
-                     </tr>
-                     <tr>
-                        <td data-label="NA">&nbsp;</td>
-                        <td data-label="Resource Mix">Sr. Ass / Asst. Mngr / Ass.</td>
-                        <td data-label="Ratio">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Text input" value="0.04">
-                           </div>
-                        </td>
-                        <td data-label="Number of Man Days">103.82 </td>
-                        <td data-label="Man Month">5.66</td>
-                        <td data-label="Monthly CTC">
-                           <div class="form-group">
-                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                           </div>
-                        </td>
-                        <td data-label="NA">7,55,060</td>
-                  </tbody>
-               </table>
+               <form *ngIf="ContentCustomizationData.length"   [formGroup]="calculationForm" (ngSubmit)="contentCustomizationUpdate(calculationForm)">
+                  <table >
+                     <thead>
+                        <tr class="table-container-top2">
+                           <th scope="col">Resource Mix</th>
+                           <th scope="col">NA</th>
+                           <th scope="col">Ratio</th>
+                           <th scope="col">Number of Man Days</th>
+                           <th scope="col">Man Month</th>
+                           <th scope="col">Monthly CTC</th>
+                           <th scope="col">NA</th>
+                        </tr>
+                     </thead>
+                  
+                     <tbody formArrayName="contentCustomizations">
+                        <ng-container *ngFor="let tableObj of contentCustomizationArray.controls;let i=index">
+                           <tr [formGroupName]="i">
+                              <td>{{i==0 ? "Supervisor" : ""}}</td>
+                              <td>{{tableObj.get('manForContentCustomization')?.value}}</td>
+                              <td>
+                                 <input formControlName="manRatio" type="text" class="form-control" >
+                              </td>
+                              <td>{{tableObj.get('noOfManDays')?.value}}</td>
+                              <td>{{tableObj.get('manMonth')?.value}}</td>
+                              <td >
+                                  <input formControlName="manMonthlyCtc" type="text" class="form-control" placeholder="Text input">
+                              </td>
+                              <td>{{tableObj.get('valueForMan')?.value}}</td>
+                           </tr>   
+                        </ng-container>
+   
+                     </tbody>
+
+                     <tbody *ngIf="!ContentCustomizationData.length">
+                        <tr>No Records Found</tr>
+                     </tbody>
+                  </table>
+               
+               
               <mat-card-content>
                  <mat-grid-list class="belowTable" cols="2" rowHeight="3:1">
                      <mat-grid-tile>
@@ -134,12 +82,12 @@
                              <mat-card-header class="header2"><h1 >Productivity %</h1></mat-card-header>
                              <div class="fromContent">
                                  <mat-card-content>
-                                     <form action="">
+                                     
                                      <div class="lableFrom">
                                          <label  for="">Content Updates</label>
                                          <div class="inputFrom2"><input type="text"  name="" ></div>
                                      </div>   
-                                   </form>
+                                   
                                  </mat-card-content>
                              </div>
                          </div> 
@@ -149,10 +97,11 @@
               </mat-card-content>
                <div class="blue-ribon2"></div>
                <div class="boader">
-                 <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+                 <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
                  <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                 <button mat-raised-button class="button" color="primary" type="button">Check</button>
+                 <button mat-raised-button class="button" color="primary" type="submit">Update</button>
                </div>
+            </form>
             </mat-card>
             <mat-card>
                <div class="resultDiv">
@@ -201,105 +150,30 @@
                                      </tr>
                                   </thead>
                                   <tbody>
+   
                                      <tr>
-                                        <td data-label="Resource Mix">Supervisor</td>
-                                        <td data-label="NA">&nbsp;</td>
-                                        <td data-label="Ratio"></td>
-                                        <td data-label="Number of Man Days">&nbsp;</td>
-                                        <td data-label="Man Month">&nbsp;</td>
-                                        <td data-label="Monthly Payout">&nbsp;</td>
-                                        <td data-label="Monthly CTC">&nbsp;</td>
-                                        <td data-label="NA">&nbsp;</td>
+                                        <td>Sr Manager</td>
+                                        <td>Partner</td>
+                                        <td>
+                                           <div class="form-group">
+                                              <input type="text" class="form-control" placeholder="Text input" >
+                                           </div>
+                                        </td>
+                                        <td>2.60 </td>
+                                        <td>0.14</td>
+                                        <td>
+                                           <div>
+                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000" disabled >
+                                           </div>
+                                        </td>
+                                        <td>
+                                           <div>
+                                              <input type="text" class="form-control" placeholder="Text input" >
+                                           </div>
+                                        </td>
+                                        <td>18,877</td>
                                      </tr>
-                                     <tr>
-                                        <td data-label="Resource Mix">Sr Manager</td>
-                                        <td data-label="NA">Partner</td>
-                                        <td data-label="Ratio">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="0.05">
-                                           </div>
-                                        </td>
-                                        <td data-label="Number of Man Days">2.60 </td>
-                                        <td data-label="Man Month">0.14</td>
-                                        <td data-label="Monthly Payout">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="Monthly CTC">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="NA">18,877</td>
-                                     </tr>
-                                     <tr>
-                                        <td data-label="Resource Mix">Assistant Manager
-                                        </td>
-                                        <td data-label="NA">AVP/VP</td>
-                                        <td data-label="Ratio">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="0.1">
-                                           </div>
-                                        </td>
-                                        <td data-label="Number of Man Days">5.19 </td>
-                                        <td data-label="Man Month">0.28</td>
-                                        <td data-label="Monthly Payout">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="Monthly CTC">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="NA">37,753</td>
-                                     </tr>
-                                     <tr>
-                                        <td data-label="NA">&nbsp;</td>
-                                        <td data-label="Resource Mix">Manager/Sr. Mngr</td>
-                                        <td data-label="Ratio">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="0.25">
-                                           </div>
-                                        </td>
-                                        <td data-label="Number of Man Days">12.98 </td>
-                                        <td data-label="Man Month">0.71</td>
-                                        <td data-label="Monthly Payout">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="Monthly CTC">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="NA">94,383</td>
-                                     </tr>
-                                     <tr>
-                                        <td data-label="NA">&nbsp;</td>
-                                        <td data-label="Resource Mix">Sr. Ass / Asst. Mngr / Ass.</td>
-                                        <td data-label="Ratio">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="0.06">
-                                           </div>
-                                        </td>
-                                        <td data-label="Number of Man Days">31.15 </td>
-                                        <td data-label="Man Month">1.70</td>
-                                        <td data-label="Monthly Payout">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="Monthly CTC">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="NA">2,265,518</td>
-                                     </tr>
+
                                   </tbody>
                                </table>
                                <mat-card-content>
@@ -379,7 +253,7 @@
                                        </div>
                                        <div class="blue-txt-box1 mb-1 pb-1 pt-1">
                                           <div class="form-group m-0">
-                                             <input type="text" class="thirdTabTextFild" placeholder="Text input" value="0.1">
+                                             <input type="text" class="thirdTabTextFild" placeholder="Text input" value="">
                                           </div>
                                        </div>
                                        <div class="txt-box1 mt-1">
@@ -388,7 +262,7 @@
                                     </div>
                                        <div class="blue-txt-box1 mt-1 pb-1 pt-1">
                                           <div class="form-group m-0">
-                                             <input type="text" class="thirdTabTextFild" placeholder="Text input" value="10">
+                                             <input type="text" class="thirdTabTextFild" placeholder="Text input" value="">
                                           </div>
                                        </div>
                             
@@ -453,49 +327,26 @@
                                   </thead>
                                   <tbody>
                                      <tr>
-                                        <td data-label="Resource Mix">Team Leader</td>
-                                        <td data-label="NA">Team Lead</td>
-                                        <td data-label="Ratio">
+                                        <td>Team Leader</td>
+                                        <td>Team Lead</td>
+                                        <td>
                                            <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1">
+                                              <input type="text" class="form-control" placeholder="Text input" value="">
                                            </div>
                                         </td>
-                                        <td data-label="Number of Man Days">0.00 </td>
-                                        <td data-label="Man Month">0.14</td>
-                                        <td data-label="Monthly Payout">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="10,00,000">
+                                        <td>0.00 </td>
+                                        <td>0.14</td>
+                                        <td>
+                                           <div >
+                                              <input type="text" class="form-control" placeholder="Text input" value="">
                                            </div>
                                         </td>
-                                        <td data-label="Monthly CTC">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="12,00,000">
+                                        <td >
+                                           <div>
+                                              <input type="text" class="form-control" placeholder="Text input" value="12,00,000" disabled>
                                            </div>
                                         </td>
-                                        <td data-label="NA">48</td>
-                                     </tr>
-                                     <tr>
-                                        <td data-label="Resource Mix"> &nbsp;
-                                        </td>
-                                        <td data-label="NA">Customer Executives</td>
-                                        <td data-label="Ratio">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="3">
-                                           </div>
-                                        </td>
-                                        <td data-label="Number of Man Days">0.00 </td>
-                                        <td data-label="Man Month">0.28</td>
-                                        <td data-label="Monthly Payout">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="Monthly CTC">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,20,000">
-                                           </div>
-                                        </td>
-                                        <td data-label="NA">15</td>
+                                        <td>48</td>
                                      </tr>
                                   </tbody>
                                </table>
@@ -546,31 +397,31 @@
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td data-label="NA">Number of Servers managed per resource</td>
-                                    <td data-label="NA">
+                                    <td  >Number of Servers managed per resource</td>
+                                    <td  >
                                        <div class="input-box">
                                           <div class="form-group">
-                                             <input type="text" class="form-control" placeholder="Text input" value="1">
+                                             <input type="text" class="form-control" placeholder="Text input" value="">
                                           </div>
                                        </div>
                                     </td>
                                  </tr>
                                  <tr>
-                                    <td data-label="NA">Resource Cost CTC</td>
-                                    <td data-label="NA">
+                                    <td>Resource Cost CTC</td>
+                                    <td>
                                        <div class="input-box">
                                           <div class="form-group">
-                                             <input type="text" class="form-control" placeholder="Text input" value="1">
+                                             <input type="text" class="form-control" placeholder="Text input" value="">
                                           </div>
                                        </div>
                                     </td>
                                  </tr>
                                  <tr>
-                                    <td data-label="NA">Number of licenses per server</td>
-                                    <td data-label="NA">
+                                    <td  >Number of licenses per server</td>
+                                    <td  >
                                        <div class="input-box">
                                           <div class="form-group">
-                                             <input type="text" class="form-control" placeholder="Text input" value="1">
+                                             <input type="text" class="form-control" placeholder="Text input" value="">
                                           </div>
                                        </div>
                                     </td>
@@ -659,26 +510,41 @@
                       </thead>
                       <tbody>
                          <tr>
-                            <td data-label="NA">Cost per  server per month</td>
-                            <td data-label="NA">
+                            <td  >Cost per  server per month</td>
+                            <td  >
                                <div class="input-box">
                                   <div class="form-group">
-                                     <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
+                                     <input type="text" class="form-control" placeholder="Text input" value="">
                                   </div>
                                </div>
                             </td>
                          </tr>
                          <tr>
-                            <td data-label="NA">Number of licenses per server</td>
-                            <td data-label="NA">
+                            <td  >Number of licenses per server</td>
+                            <td  >
                                <div class="input-box">
                                   <div class="form-group">
-                                     <input type="text" class="form-control" placeholder="Text input" value="5,000">
+                                     <input type="text" class="form-control" placeholder="Text input" >
                                   </div>
                                </div>
                             </td>
                          </tr>
                          <tr>
+                           <td  >Occupancy %</td>
+                           <td  >
+                              <div class="input-box">
+                                 <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Text input" >
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td  >Cost per licence per month</td>
+                           <td  >
+                           <div class="resltValue">27</div>
+                           </td>
+                        </tr>
                       </tbody>
                     </table>
                 </div>
@@ -726,11 +592,11 @@
                                </thead>
                                <tbody>
                                   <tr>
-                                     <td data-label="NA">Payment made to IQSS for Software Development</td>
-                                     <td data-label="NA">
+                                     <td  >Payment made to IQSS for Software Development</td>
+                                     <td  >
                                         <div class="input-box">
                                            <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,00,000">
+                                              <input type="text" class="form-control" placeholder="Text input" >
                                            </div>
                                         </div>
                                      </td>
@@ -762,44 +628,44 @@
                             </thead>
                             <tbody>
                                <tr>
-                                  <td data-label="NA">Annual Software spend planned</td>
-                                  <td data-label="NA">
+                                  <td  >Annual Software spend planned</td>
+                                  <td  >
                                      <div class="input-box">
                                         <div class="form-group">
-                                           <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
+                                           <input type="text" class="form-control" placeholder="Text input" >
                                         </div>
                                      </div>
                                   </td>
                                </tr>
                                <tr>
-                                  <td data-label="NA">Number of new clients added	</td>
-                                  <td data-label="NA">
+                                  <td  >Number of new clients added	</td>
+                                  <td  >
                                      <div class="input-box">
                                         150
                                      </div>
                                   </td>
                                </tr>
                                <tr>
-                                  <td data-label="NA">Average license per client</td>
-                                  <td data-label="NA">
+                                  <td  >Average license per client</td>
+                                  <td  >
                                      <div class="input-box">
                                         <div class="form-group">
-                                           <input type="text" class="form-control" placeholder="Text input" value="50">
+                                           <input type="text" class="form-control" placeholder="Text input" >
                                         </div>
                                      </div>
                                   </td>
                                </tr>
                                <tr>
-                                  <td data-label="NA">Probabilty %</td>
-                                  <td data-label="NA">
+                                  <td  >Probabilty %</td>
+                                  <td  >
                                      <div class="input-box">
                                         80%
                                      </div>
                                   </td>
                                </tr>
                                <tr>
-                                  <td data-label="NA">Cost per client per annum</td>
-                                  <td data-label="NA">
+                                  <td  >Cost per client per annum</td>
+                                  <td  >
                                      <div class="input-box">
                                         833
                                      </div>
@@ -855,18 +721,18 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td data-label="NA">FY 11-12</td>
-                                    <td data-label="NA">
+                                    <td  >FY 11-12</td>
+                                    <td  >
                                     <div class="input-box">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
+                                            <input type="text" class="form-control" placeholder="Text input" >
                                         </div>
                                     </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td data-label="NA">FY 12-13</td>
-                                    <td data-label="NA">
+                                    <td  >FY 12-13</td>
+                                    <td  >
                                     <div class="input-box">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
@@ -917,18 +783,18 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td data-label="NA">Marketing Spend per Annum</td>
-                                            <td data-label="NA">
+                                            <td  >Marketing Spend per Annum</td>
+                                            <td  >
                                             <div class="input-box">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
+                                                    <input type="text" class="form-control" placeholder="Text input" [value]="AllMarketingSpendData[0].marketingSpendPerYear">
                                                 </div>
                                             </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td data-label="NA">Number of new Komrisk Clients</td>
-                                            <td data-label="NA">
+                                            <td  >Number of new Komrisk Clients</td>
+                                            <td  >
                                             <div class="input-box">
                                                 <div class="form-group">
                                                     <h2>150</h2>

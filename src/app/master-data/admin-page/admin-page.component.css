@@ -1,0 +1,7 @@
+.card1{width: 95%; height: auto;margin: auto;}
+table{margin: auto; width: 100%; text-align: left; border-collapse:collapse;}
+thead{background-color: rgb(96, 96, 233); color: rgb(255, 255, 255); text-align: center;}
+td{ border: 1px solid rgb(209, 207, 207);padding: 10px 0;padding-left: 100px;}
+th{padding: 16px 0;border-radius: 3px;}
+.dropDown{width: 177px; height: 22px;}
+.buttonDiv{text-align: center;}

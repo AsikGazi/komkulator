@@ -5,6 +5,7 @@ import { MasterDataFromComponent } from './master-data/master-data-from/master-d
 import { UserHomePageComponent } from './user/user-home-page/user-home-page.component';
 import { LoginFormsComponent } from './login/login-forms/login-forms.component';
 import { Sheet9Component } from './master-data/sheet9/sheet9.component';
+import { AdminPageComponent } from './master-data/admin-page/admin-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginFormComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'user', component: UserHomePageComponent },
   { path: 'masterDataForm', component: MasterDataFromComponent },
   { path: 'sheet9', component: Sheet9Component },
+  { path: 'admin', component: AdminPageComponent },
 
 ];
 
