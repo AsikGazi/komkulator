@@ -63,7 +63,7 @@ export class ApiService {
 
 //...........calculation API start .................
   calculationApi(formData: any){
-    console.log("calculationApi",formData)
+    console.log("calculationApi--",formData)
     return this.http.post<any>(`http://localhost:8080/calculatePrice`,formData,{headers: this.getHeaders(this.headers.Authorization)});
   }
 //................calculation API end ...........................
@@ -73,7 +73,7 @@ export class ApiService {
 
 ////////////// master data form ///////////////////////////
 getContentCustomizationDataApi():Observable<any>{
-  console.log("getContentCustomizationDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
+  
   return this.http.get<any>(`http://localhost:8080/getAllContentCustomization`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllContentUpdatesDataApi():Observable<any>{
@@ -81,7 +81,7 @@ getAllContentUpdatesDataApi():Observable<any>{
   return this.http.get<any>(`http://localhost:8080/getAllContentUpdates`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllCustomerSupportDataApi():Observable<any>{
-  console.log("getAllCustomerSupportDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
+  
   return this.http.get<any>(`http://localhost:8080/getAllCustomerSupport`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllAppManagementDatApi():Observable<any>{
@@ -104,5 +104,57 @@ getAllMarketingSpendDataApi():Observable<any>{
   console.log("getAllMarketingSpendDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
   return this.http.get<any>(`http://localhost:8080/getAllMarketingSpend`,{headers: this.getHeaders(this.headers.Authorization)});
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//.......................Master Data update APi call......................
+
+updateContentCustomizationDataApi(formData: any): Observable<any>{
+  console.log("-+-",formData)
+  return this.http.put<any>(`http://localhost:8080/updateContentCustomization`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+updateUpdateDataApi(formData: any): Observable<any>{
+  console.log("-+-",formData)
+  return this.http.put<any>(`http://localhost:8080/updateContentUpdates`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+customerSupportDataApi(formData: any): Observable<any>{
+  console.log("-+-",formData)
+  return this.http.put<any>(`http://localhost:8080/updateCustomerSupport`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+hostingChargeDataApi(formData: any): Observable<any>{
+  console.log("-+-",formData)
+  return this.http.put<any>(`http://localhost:8080/updateHostingCharges`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+softwerDevDataApi(formData: any): Observable<any>{
+  console.log("-+-",formData)
+  return this.http.put<any>(`http://localhost:8080/updateDevelopmentAndCost`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+softwerUpdateDataApi(formData: any): Observable<any>{
+  console.log("-+-",formData)
+  return this.http.put<any>(`http://localhost:8080/updateSoftwareUpdates`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+markatingUpdateDataApi(formData: any): Observable<any>{
+  console.log("-+-",formData)
+  return this.http.put<any>(`http://localhost:8080/updateMarketingSpend`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+
+
+
+//.........................AdminDataGetApi..........................
+getAdminData(): Observable<any>{
+  return this.http.get<any>(`http://localhost:8080/getParticularsDetails`,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+//.. Admin Data Update......
+updateAdminData(fromData: any):Observable<any>{
+  return this.http.put<any>(`http://localhost:8080/updateParticularsDetails`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
 
 }
+
