@@ -49,7 +49,7 @@ export class LoginFormComponent implements OnInit {
               },err =>{
                 if(err.status === 200){
                   this.loginForm.reset();
-                  this.router.navigate(['masterDataForm']);
+                  this.router.navigate(['admin']);
                 }else{
                   console.log(err);
                 }

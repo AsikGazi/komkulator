@@ -131,22 +131,17 @@ mat-grid-tile-content{
 }
 
 .header1{
-        width: 100%;
-        display: flex;
-        background-color: #3f8de6;
-        color: #ffffff;
-        border-radius: 10px;
-        margin-top: 20px;
-        padding-top: 10px;
-}
-.header2{
-    width: 100%;
-    display: flex;
-    background-color:#3f8de6;
-
+    background-color: #3f8de6;
     color: #ffffff;
     border-radius: 10px;
-    padding-top: 10px;
+    margin-top: -1px;
+    padding-top: 20px;
+}
+.header2{
+    background-color:#3f8de6;
+    color: #ffffff;
+    border-radius: 10px;
+    padding-top: 20px;
 }
 .fromFild{
     width: 80%;

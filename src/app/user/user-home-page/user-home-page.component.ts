@@ -22,7 +22,7 @@ export class UserHomePageComponent implements OnInit{
   //   corporate: ['']
   // })
   
-
+  numberOfUnreadAlerts:any = 0 ;
 
   br: any;
   entities : any;
@@ -104,6 +104,7 @@ calculationFunction(formValue: any){
     console.log("Result--Final--",result);
     this.calcultedOneTimeFee = result.oneTimeFee;
     this.monthlySubscription = result.monthlySubscription;
+    this.numberOfUnreadAlerts = 1;
     console.log("calcultedOneTimeFee-",this.calcultedOneTimeFee);
     console.log("monthlySubscription-",this.monthlySubscription);
   })

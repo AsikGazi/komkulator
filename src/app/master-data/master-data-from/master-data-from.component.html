@@ -1,407 +1,379 @@
 <div class="container">
-    <div class="content">
-        <mat-card class="maincard">
-            <mat-tab-group >
+   <div style="text-align:right; padding-right: 60px;">
+      <button mat-raised-button color="primary" type="button" (click)="sheet9()">Previous</button>
+  </div>
+   <div class="content">
+      <mat-card class="maincard">
+         <mat-tab-group >
+            <!-- content customisation -- start -->
+            <mat-tab label="Content customisation">
+               <div class="tab__content">
+                  <div class="blue-ribon">
+                     Content Customization
+                  </div>
+                  <div class="content-eliment">
+                     <div class="txt-box1">
+                        <h3 class="m-0">Man Days effort for customization per new client</h3>
+                     </div>
+                     <div class="blue-txt-box1">
+                        <h3 class="m-0">260</h3>
+                     </div>
+                  </div>
+                  <mat-card>
+                     <form *ngIf="ContentCustomizationData.length"   [formGroup]="calculationForm" (ngSubmit)="contentCustomizationUpdate(calculationForm)">
+                     <table >
+                        <thead>
+                           <tr class="table-container-top2">
+                              <th scope="col">Resource Mix</th>
+                              <th scope="col">Men</th>
+                              <th scope="col">Ratio</th>
+                              <th scope="col">Number of Man Days</th>
+                              <th scope="col">Man Month</th>
+                              <th scope="col">Monthly CTC</th>
+                              <th scope="col">Total</th>
+                           </tr>
+                        </thead>
+                        <tbody formArrayName="contentCustomizations">
+                           <ng-container *ngFor="let tbleObj of contentCustomizationArray.controls;let i=index">
+                              <tr [formGroupName]="i">
+                                 <td>{{i==0 ? "Supervisor" : ""}}</td>
+                                 <td>
+                                    {{tbleObj.get('manForContentCustomization')?.value}}
+                                 </td>
+                                 <td>
+                                    <input formControlName="manRatio" type="text" class="form-control" >
+                                 </td>
+                                 <td>{{tbleObj.get('noOfManDays')?.value}}</td>
+                                 <td>{{tbleObj.get('manMonth')?.value}}</td>
+                                 <td >
+                                    <input formControlName="manMonthlyCtc" type="text" class="form-control">
+                                 </td>
+                                 <td>{{tbleObj.get('valueForMan')?.value}}</td>
+                              </tr>
+                           </ng-container>
+                        </tbody>
+                     </table>
 
-<!-- content customisation -- start -->
-
-<mat-tab label="Content customisation">
-    
-        <div class="tab__content">
-            <div class="blue-ribon">
-               Content Customization
-            </div>
-            <div class="content-eliment">
-               <div class="txt-box1">
-                  <h3 class="m-0">Man Days effort for customization per new client</h3>
+                     <mat-card-content>
+                        <mat-grid-list class="belowTable" cols="2" rowHeight="3:1" *ngFor="let tbleObj of hostingChargeArray.controls;let i=index">
+                           <mat-grid-tile>
+                              <div class="fromFild">
+                                 <mat-card-header class="blueSubHeader">
+                                    <h2>Number of available hours per month per resource</h2>
+                                 </mat-card-header>
+                                 <div class="fromContent">
+                                    <mat-card-content>
+                                       <div>
+                                          <!-- <h2>{{tbleObj.get('occupancyPercent')?.value}}</h2> -->
+                                          <h2>18.33</h2>
+                                       </div>
+                                    </mat-card-content>
+                                 </div>
+                              </div>
+                           </mat-grid-tile>
+                           <span class="vertical-line"></span>
+                           <mat-grid-tile>
+                              <div class="fromFild">
+                                 <mat-card-header class="blueSubHeader">
+                                    <h2>Productivity %</h2>
+                                 </mat-card-header>
+                                 <div class="fromContent">
+                                    <mat-card-content>
+                                       <div>
+                                          <h2>{{tbleObj.get('occupancyPercent')?.value}}</h2>
+                                       </div>
+                                    </mat-card-content>
+                                 </div>
+                              </div>
+                           </mat-grid-tile>
+                        </mat-grid-list>
+                     </mat-card-content>
+                     <div class="blue-ribon2"></div>
+                     <div class="boader">
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                        <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button mat-raised-button class="button" color="primary" type="submit">Update</button>
+                     </div>
+                     </form>
+                  </mat-card>
+                  <mat-card>
+                     <div class="resultDiv">
+                        <div class="resltLable">Total Cost for Content Updates</div>
+                        <div class="resltValue">{{totalContentCost | number}}</div>
+                     </div>
+                     <div class="buttonDiv">
+                        <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                        <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                     </div>
+                  </mat-card>
                </div>
-               <div class="blue-txt-box1">
-                  <h3 class="m-0">260</h3>
+            </mat-tab>
+            <!-- content customisation -- end--------->
+            <!-- Content update -- start--------->
+            <mat-tab label="Content update">
+               <div class="tab__content">
+                  <div class="blue-ribon">
+                     Content Updates
+                  </div>
+                  <div class="content-eliment">
+                     <div class="txt-box1">
+                        <h3 class="m-0">Man Days effort required for updates per client Per Year</h3>
+                     </div>
+                     <div class="blue-txt-box1">
+                        <h3 class="m-0">52</h3>
+                     </div>
+                  </div>
+                  <mat-card>
+                     <form [formGroup]="contentUpdateForm" (ngSubmit)="contentUpdateUpdate(contentUpdateForm)">
+                     <table>
+                        <thead>
+                           <tr class="table-container-top2">
+                              <th scope="col">Resource Mix</th>
+                              <th scope="col">Men</th>
+                              <th scope="col">Ratio</th>
+                              <th scope="col">Number of Man Days</th>
+                              <th scope="col">Man Month</th>
+                              <th scope="col">Monthly Payout</th>
+                              <th scope="col">Monthly CTC</th>
+                              <th scope="col">Total</th>
+                           </tr>
+                        </thead>
+                        <tbody formArrayName="contentUpdates">
+                           <ng-container *ngFor="let tableObj of contentUpdateArray.controls;let i=index">
+                              <tr [formGroupName]="i">
+                                 <td>{{i==0 ? "Supervisor" : "" ||i==1 ? "Sr. Manager" : "" ||i==2 ? "Assistant Managerr" : ""}}</td>
+                                 <td>{{tableObj.get('manForContentUpdates')?.value}}</td>
+                                 <td>
+                                    <div>
+                                       <input type="text" formControlName="manRatio"  class="form-control" >
+                                    </div>
+                                 </td>
+                                 <td>{{tableObj.get('noOfManDays')?.value}}</td>
+                                 <td>{{tableObj.get('manMonth')?.value}}</td>
+                                 <td>{{tableObj.get('manMonthlyCtc')?.value}}</td>
+                                 <td>
+                                    <div>
+                                       <input type="text" formControlName="manMonthlyCtc" class="form-control" >
+                                    </div>
+                                 </td>
+                                 <td>{{tableObj.get('valueForMan')?.value}}</td>
+                              </tr>
+                           </ng-container>
+                        </tbody>
+                     </table>
+                     <mat-card-content>
+                        <mat-grid-list class="belowTable" cols="2" rowHeight="3:1" *ngFor="let tbleObj of hostingChargeArray.controls;let i=index">
+                           <mat-grid-tile>
+                              <div class="fromFild">
+                                 <mat-card-header class="blueSubHeader">
+                                    <h2>Number of available hours per month per resource</h2>
+                                 </mat-card-header>
+                                 <div class="fromContent">
+                                    <mat-card-content>
+                                       <div>
+                                          <h2>18.33</h2>
+                                       </div>
+                                    </mat-card-content>
+                                 </div>
+                              </div>
+                           </mat-grid-tile>
+                           <span class="vertical-line"></span>
+                           <mat-grid-tile>
+                              <div class="fromFild">
+                                 <mat-card-header class="blueSubHeader">
+                                    <h2>Productivity %</h2>
+                                 </mat-card-header>
+                                 <div class="fromContent">
+                                    <mat-card-content>
+                                       <div>
+                                          <h2>{{tbleObj.get('occupancyPercent')?.value}}</h2>
+                                       </div>
+                                    </mat-card-content>
+                                 </div>
+                              </div>
+                           </mat-grid-tile>
+                        </mat-grid-list>
+                     </mat-card-content>
+                     <div class="blue-ribon2"></div>
+                     <div class="boader">
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                        <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button mat-raised-button class="button" color="primary" type="submit" >Update</button>
+                     </div>
+                     </form>
+                  </mat-card>
+                  <mat-card>
+                     <div class="resultDiv">
+                        <div class="resltLable">Total Cost for Content Updates</div>
+                        <div class="resltValue">{{totalContentUpdateCost | number}}</div>
+                     </div>
+                     <div class="buttonDiv">
+                        <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                        <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                     </div>
+                  </mat-card>
                </div>
-            </div>
-            <mat-card>
-               <form *ngIf="ContentCustomizationData.length"   [formGroup]="calculationForm" (ngSubmit)="contentCustomizationUpdate(calculationForm)">
-                  <table >
+            </mat-tab>
+            <!-- Content update -- end--------->
+            <!-- Customer support -- start--------->
+            <mat-tab label="Customer support">
+               <div class="tab__content">
+                  <div class="blue-ribon">
+                     Customer Support - Cost per license per annum
+                  </div>
+               </div>
+               <form [formGroup]="customerSupportForm" (ngSubmit)="customerSupportUpdate(customerSupportForm)">
+               <div class="content-eliment">
+                  <div class="txt-box1 mb-1">
+                     <h3 class="m-0">Number of calls per user per month</h3>
+                  </div>
+                  <div class="blue-txt-box1 mb-1 pb-1 pt-1">
+                     <div class="form-group m-0">
+                        <input type="text" class="thirdTabTextFild" [(value)]="AllCustomerSupportData[0].callsPerUser">
+                     </div>
+                  </div>
+                  <div class="txt-box1 mt-1">
+                     <h3 class="m-0">Standard time required per call in Mins</h3>
+                  </div>
+               </div>
+               <div class="blue-txt-box1 mt-1 pb-1 pt-1">
+                  <div class="form-group m-0">
+                     <input type="text" class="thirdTabTextFild" [(value)]="AllCustomerSupportData[0].timePerCall" >
+                  </div>
+               </div>
+               <mat-card-subtitle>
+                  <div class="resultDiv1" *ngFor="let val of marketingSpendFormArray.controls">
+                     <div class="resltLable1">Marketing spend per Komrisk Client per annum</div>
+                     <div class="resltValue1">{{val.get('marketingSpendPerYear')?.value}}</div>
+                  </div>
+               </mat-card-subtitle>
+               <mat-card-content class="card2">
+                  <mat-grid-list class="belowTable2" cols="2" rowHeight="3:1">
+                     <mat-grid-tile>
+                        <div class="fromFild">
+                           <mat-card-header class="header1">
+                              <h1>Productivity %</h1>
+                           </mat-card-header>
+                           <div class="fromContent">
+                              <mat-card-content>
+                                 <div>
+                                    <h2>75%</h2>
+                                 </div>
+                              </mat-card-content>
+                           </div>
+                        </div>
+                     </mat-grid-tile>
+                     <span class="vertical-line"></span>
+                     <mat-grid-tile>
+                        <div class="fromFild">
+                           <mat-card-header class="header2">
+                              <h1 >Required Man Days</h1>
+                           </mat-card-header>
+                           <div class="fromContent">
+                              <mat-card-content>
+                                 <div>
+                                    <h2>0.00</h2>
+                                 </div>
+                              </mat-card-content>
+                           </div>
+                        </div>
+                     </mat-grid-tile>
+                  </mat-grid-list>
+               </mat-card-content>
+               <mat-card>
+                  <table>
                      <thead>
                         <tr class="table-container-top2">
                            <th scope="col">Resource Mix</th>
-                           <th scope="col">NA</th>
+                           <th scope="col">Content Custom Men</th>
                            <th scope="col">Ratio</th>
                            <th scope="col">Number of Man Days</th>
                            <th scope="col">Man Month</th>
+                           <th scope="col">Monthly Payout</th>
                            <th scope="col">Monthly CTC</th>
-                           <th scope="col">NA</th>
+                           <th scope="col">Total</th>
                         </tr>
                      </thead>
-                  
-                     <tbody formArrayName="contentCustomizations">
-                        <ng-container *ngFor="let tableObj of contentCustomizationArray.controls;let i=index">
+                     <tbody formArrayName="customerSupport">
+                        <ng-container *ngFor="let tbleObj of customerSupportArray.controls;let i=index">
                            <tr [formGroupName]="i">
-                              <td>{{i==0 ? "Supervisor" : ""}}</td>
-                              <td>{{tableObj.get('manForContentCustomization')?.value}}</td>
+                              <td>{{i==0 ? "Team Lead" : ""}}</td>
+                              <td>{{tbleObj.get('manForCustomerSupport')?.value}}</td>
                               <td>
-                                 <input formControlName="manRatio" type="text" class="form-control" >
+                                 <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Text input" formControlName="manRatio">
+                                 </div>
                               </td>
-                              <td>{{tableObj.get('noOfManDays')?.value}}</td>
-                              <td>{{tableObj.get('manMonth')?.value}}</td>
+                              <td>{{tbleObj.get('noOfManDays')?.value}}</td>
+                              <td>{{tbleObj.get('manMonth')?.value}}</td>
+                              <td>
+                                 <div >
+                                    <input type="text" class="form-control" formControlName="monthlyPayout">
+                                 </div>
+                              </td>
                               <td >
-                                  <input formControlName="manMonthlyCtc" type="text" class="form-control" placeholder="Text input">
+                                 <div>
+                                    <input type="text" class="form-control" formControlName="monthlyCtc">
+                                 </div>
                               </td>
-                              <td>{{tableObj.get('valueForMan')?.value}}</td>
-                           </tr>   
+                              <td>{{tbleObj.get('valueForMan')?.value}}</td>
+                           </tr>
                         </ng-container>
-   
-                     </tbody>
-
-                     <tbody *ngIf="!ContentCustomizationData.length">
-                        <tr>No Records Found</tr>
                      </tbody>
                   </table>
-               
-               
-              <mat-card-content>
-                 <mat-grid-list class="belowTable" cols="2" rowHeight="3:1">
-                     <mat-grid-tile>
-                         <div class="fromFild">
-                             <mat-card-header class="header1"><h1 >Occupancy %</h1></mat-card-header>
-                             <div class="fromContent">
-                                 <mat-card-content>
-                                     <form action="">
-                                     <div class="lableFrom">
-                                         <label  for="">Content Customization/ <br> Creation Publishing</label>
-                                         <div class="inputFrom"><input type="text"  name="" ></div>
-                                     </div>   
-                                   </form>
-                                 </mat-card-content>
-                             </div>
-                         </div>  
-                      </mat-grid-tile>
-                      <span class="vertical-line"></span>
-                     <mat-grid-tile>
-                         <div class="fromFild">
-                             <mat-card-header class="header2"><h1 >Productivity %</h1></mat-card-header>
-                             <div class="fromContent">
-                                 <mat-card-content>
-                                     
-                                     <div class="lableFrom">
-                                         <label  for="">Content Updates</label>
-                                         <div class="inputFrom2"><input type="text"  name="" ></div>
-                                     </div>   
-                                   
-                                 </mat-card-content>
-                             </div>
-                         </div> 
-                     </mat-grid-tile>
-                     
-                 </mat-grid-list>
-              </mat-card-content>
-               <div class="blue-ribon2"></div>
-               <div class="boader">
-                 <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
-                 <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                 <button mat-raised-button class="button" color="primary" type="submit">Update</button>
-               </div>
-            </form>
-            </mat-card>
-            <mat-card>
-               <div class="resultDiv">
-               <div class="resltLable">Total Cost for Content Updates</div>
-               <div class="resltValue">18,87,651 </div>
-               </div> 
-               <div class="buttonDiv">
-                 <button mat-raised-button class="button" color="primary" type="button">Save</button>
-                 <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                 <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
-               </div>
-            </mat-card>
-         </div>
-         
- </mat-tab>
-    <!-- content customisation -- end--------->
-
-     <!-- Content update -- start--------->
-
-                <mat-tab label="Content update">
-                    
-                        <div class="tab__content">
-                            <div class="blue-ribon">
-                               Content Updates
-                            </div>
-                            <div class="content-eliment">
-                               <div class="txt-box1">
-                                  <h3 class="m-0">Man Days effort required for updates per client Per Year</h3>
-                               </div>
-                               <div class="blue-txt-box1">
-                                  <h3 class="m-0">52</h3>
-                               </div>
-                            </div>
-                            <mat-card>
-                               <table>
-                                  <thead>
-                                     <tr class="table-container-top2">
-                                        <th scope="col">Resource Mix</th>
-                                        <th scope="col">NA</th>
-                                        <th scope="col">Ratio</th>
-                                        <th scope="col">Number of Man Days</th>
-                                        <th scope="col">Man Month</th>
-                                        <th scope="col">Monthly Payout</th>
-                                        <th scope="col">Monthly CTC</th>
-                                        <th scope="col">NA</th>
-                                     </tr>
-                                  </thead>
-                                  <tbody>
-   
-                                     <tr>
-                                        <td>Sr Manager</td>
-                                        <td>Partner</td>
-                                        <td>
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" >
-                                           </div>
-                                        </td>
-                                        <td>2.60 </td>
-                                        <td>0.14</td>
-                                        <td>
-                                           <div>
-                                              <input type="text" class="form-control" placeholder="Text input" value="1,00,000" disabled >
-                                           </div>
-                                        </td>
-                                        <td>
-                                           <div>
-                                              <input type="text" class="form-control" placeholder="Text input" >
-                                           </div>
-                                        </td>
-                                        <td>18,877</td>
-                                     </tr>
-
-                                  </tbody>
-                               </table>
-                               <mat-card-content>
-                                <mat-grid-list class="belowTable" cols="2" rowHeight="3:1">
-                                    <mat-grid-tile>
-                                        <div class="fromFild">
-                                            <mat-card-header class="blueSubHeader">
-                                                <h2>Number of available hours per month per resource</h2>
-                                            </mat-card-header>
-                                            <div class="fromContent">
-                                                <mat-card-content>
-            
-                                                    <div>
-                                                        <h2>18.33</h2>
-                                                    </div>   
-                                                
-                                                </mat-card-content>
-                                            </div>
-                                        </div>  
-                                     </mat-grid-tile>
-                                     <span class="vertical-line"></span>
-                                    <mat-grid-tile>
-                                       <div class="fromFild">
-                                            <mat-card-header class="blueSubHeader">
-                                                <h2>Productivity %</h2>
-                                            </mat-card-header>
-                                            <div class="fromContent">
-                                                <mat-card-content>
-            
-                                                    <div>
-                                                        <h2>75%</h2>
-                                                    </div>   
-                                                
-                                                </mat-card-content>
-                                            </div>
-                                        </div>
-                                    </mat-grid-tile>
-                                    
-                                </mat-grid-list>
-                             </mat-card-content>
-                              <div class="blue-ribon2"></div>
-                              <div class="boader">
-                                <button mat-raised-button class="button" color="basic" type="button">Reset</button>
-                                <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <button mat-raised-button class="button" color="primary" type="button">Check</button>
-                              </div>
-                            </mat-card>
-                            <mat-card>
-                                <div class="resultDiv">
-                                <div class="resltLable">Total Cost for Content Updates</div>
-                                <div class="resltValue">3,77,530 </div>
-                                </div> 
-                                <div class="buttonDiv">
-                                  <button mat-raised-button class="button" color="primary" type="button">Save</button>
-                                  <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                  <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
-                                </div>
-                             </mat-card>
-                         </div>
-                     
-                   
-                </mat-tab>
-            <!-- Content update -- end--------->
-
-            <!-- Customer support -- start--------->
-
-                <mat-tab label="Customer support"> 
-                                <div class="tab__content">
-                                    <div class="blue-ribon">
-                                       Customer Support - Cost per license per annum
-                                    </div>
-                                </div>
-                                
-                                    <div class="content-eliment">
-                                       <div class="txt-box1 mb-1">
-                                          <h3 class="m-0">Number of calls per user per month</h3>
-                                       </div>
-                                       <div class="blue-txt-box1 mb-1 pb-1 pt-1">
-                                          <div class="form-group m-0">
-                                             <input type="text" class="thirdTabTextFild" placeholder="Text input" value="">
-                                          </div>
-                                       </div>
-                                       <div class="txt-box1 mt-1">
-                                          <h3 class="m-0">Standard time required per call in Mins</h3>
-                                       </div>
-                                    </div>
-                                       <div class="blue-txt-box1 mt-1 pb-1 pt-1">
-                                          <div class="form-group m-0">
-                                             <input type="text" class="thirdTabTextFild" placeholder="Text input" value="">
-                                          </div>
-                                       </div>
-                            
-
-                            <mat-card-subtitle >
-                                <div class="resultDiv1">
-                                    <div class="resltLable1">Marketing spend per Komrisk Client per annum</div>
-                                    <div class="resltValue1">1,00,000</div>
-                                </div>
-                            </mat-card-subtitle>                             
-                               
-
-                               <mat-card-content class="card2">
-                                 <mat-grid-list class="belowTable2" cols="2" rowHeight="3:1">
-                                    <mat-grid-tile>
-                                        <div class="fromFild">
-                                            <mat-card-header class="header1"><h1>Productivity %</h1></mat-card-header>
-                                            <div class="fromContent">
-                                                <mat-card-content>
-                                                    
-                                                    <div>
-                                                        <h2>75%</h2>
-                                                    </div>   
-                                                  
-                                                </mat-card-content>
-                                            </div>
-                                        </div>  
-                                     </mat-grid-tile>
-                                     <span class="vertical-line"></span>
-
-                                    <mat-grid-tile>
-                                        <div class="fromFild">
-                                            <mat-card-header class="header2"><h1 >Required Man Days</h1></mat-card-header>
-                                            <div class="fromContent">
-                                                <mat-card-content>
-                                                    
-                                                    <div>
-                                                        <h2>0.00</h2>
-                                                    </div>   
-                                                 
-                                                </mat-card-content>
-                                            </div>
-                                        </div> 
-                                    </mat-grid-tile>
-                                    
-                                </mat-grid-list>
-                               </mat-card-content>
-
-                             <mat-card>
-                               <table>
-                                  <thead>
-                                     <tr class="table-container-top2">
-                                        <th scope="col">Resource Mix</th>
-                                        <th scope="col">NA</th>
-                                        <th scope="col">Ratio</th>
-                                        <th scope="col">Number of Man Days</th>
-                                        <th scope="col">Man Month</th>
-                                        <th scope="col">Monthly Payout</th>
-                                        <th scope="col">Monthly CTC</th>
-                                        <th scope="col">NA</th>
-                                     </tr>
-                                  </thead>
-                                  <tbody>
-                                     <tr>
-                                        <td>Team Leader</td>
-                                        <td>Team Lead</td>
-                                        <td>
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" value="">
-                                           </div>
-                                        </td>
-                                        <td>0.00 </td>
-                                        <td>0.14</td>
-                                        <td>
-                                           <div >
-                                              <input type="text" class="form-control" placeholder="Text input" value="">
-                                           </div>
-                                        </td>
-                                        <td >
-                                           <div>
-                                              <input type="text" class="form-control" placeholder="Text input" value="12,00,000" disabled>
-                                           </div>
-                                        </td>
-                                        <td>48</td>
-                                     </tr>
-                                  </tbody>
-                               </table>
-                               <br>
-                               <br>
-                            
-                               <div class="resultDiv">
-                                <div class="resltLable">Number of days available per month per resource</div>
-                                <div class="resltValue">18.33</div>
-                                </div> 
-                                <div class="buttonDiv">
-                                  <button mat-raised-button class="button" color="basic" type="button">Reset</button>
-                                  <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                  <button mat-raised-button class="button" color="primary" type="button">Check</button>
-                                </div>
-                             </mat-card>
-
-                            <mat-card>
-                                <div class="resultDiv">
-                                <div class="resltLable">Total Cost for Content Updates</div>
-                                <div class="resltValue">756.36  </div>
-                                </div> 
-                                <div class="buttonDiv">
-                                  <button mat-raised-button class="button" color="primary" type="button">Save</button>
-                                  <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                  <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
-                                </div>
-                             </mat-card>
-                        </mat-tab>
+                  <br>
+                  <br>
+                  <div class="resultDiv">
+                     <div class="resltLable">Number of days available per month per resource</div>
+                     <div class="resltValue">18.33</div>
+                  </div>
+                  <div class="buttonDiv">
+                     <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+                     <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     <button mat-raised-button class="button" color="primary" type="submit">Update</button>
+                  </div>
+               </mat-card>
+               </form>
+               <mat-card>
+                  <div class="resultDiv">
+                     <div class="resltLable">Total Cost for Content Updates</div>
+                     <div class="resltValue">756.36  </div>
+                  </div>
+                  <div class="buttonDiv">
+                     <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                     <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                  </div>
+               </mat-card>
+            </mat-tab>
             <!-- Customer support -- end--------->
-
             <!-- Application management -- start--------->
-
-                <mat-tab label="Application management">
-                    <div class="tab__content">
-                        <div class="blue-ribon">
-                           Application Management - Cost per license per annum
-                        </div>
-                    </div>
-                        <mat-card>
-                        <div class="content-eliment1">
-                           <table>
-                              <thead>
-                                 <tr class="table-container-top2">
-                                    <th scope="col">NA</th>
-                                    <th scope="col">NA</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
+            <mat-tab label="Application management">
+               <div class="tab__content">
+                  <div class="blue-ribon">
+                     Application Management - Cost per license per annum
+                  </div>
+               </div>
+               <mat-card>
+                  <form [formGroup]="appManagementForm">
+                     <div class="content-eliment1">
+                        <table>
+                           <thead>
+                              <tr class="table-container-top2">
+                                 <th scope="col">NA</th>
+                                 <th scope="col">NA</th>
+                              </tr>
+                           </thead>
+                           <tbody formArrayName="applicationManagements" *ngFor="let tbleObj of appManagementArray.controls;let i=index">
+                              <ng-container [formGroupName]="i">
                                  <tr>
                                     <td  >Number of Servers managed per resource</td>
                                     <td  >
                                        <div class="input-box">
                                           <div class="form-group">
-                                             <input type="text" class="form-control" placeholder="Text input" value="">
+                                             <input type="text" class="form-control" formControlName="noOfServers">
                                           </div>
                                        </div>
                                     </td>
@@ -411,7 +383,7 @@
                                     <td>
                                        <div class="input-box">
                                           <div class="form-group">
-                                             <input type="text" class="form-control" placeholder="Text input" value="">
+                                             <input type="text" class="form-control" formControlName="resourceCostCtc">
                                           </div>
                                        </div>
                                     </td>
@@ -421,414 +393,386 @@
                                     <td  >
                                        <div class="input-box">
                                           <div class="form-group">
-                                             <input type="text" class="form-control" placeholder="Text input" value="">
+                                             <input type="text" class="form-control" formControlName="noOfLicensePerServer">
                                           </div>
                                        </div>
                                     </td>
                                  </tr>
-                              </tbody>
-                           </table>
-                           </div>
-
-
-                           <mat-card-content class="card2">
-                          <mat-grid-list class="belowTable2" cols="2" rowHeight="3:1">
-                                    <mat-grid-tile>
-                                        <div class="fromFild">
-                                            <mat-card-header class="header1"><h1>Productivity %</h1></mat-card-header>
-                                            <div class="fromContent">
-                                                <mat-card-content>
-                                                    
-                                                    <div>
-                                                        <h2>75%</h2>
-                                                    </div>   
-                                                  
-                                                </mat-card-content>
-                                            </div>
-                                        </div>  
-                                     </mat-grid-tile>
-                                     <span class="vertical-line"></span>
-
-                                    <mat-grid-tile>
-                                        <div class="fromFild">
-                                            <mat-card-header class="header2"><h1 >Required Man Days</h1></mat-card-header>
-                                            <div class="fromContent">
-                                                <mat-card-content>
-                                                    
-                                                    <div>
-                                                        <h2>0.00</h2>
-                                                    </div>   
-                                                 
-                                                </mat-card-content>
-                                            </div>
-                                        </div> 
-                                    </mat-grid-tile> 
-                                </mat-grid-list>  
-                                    <div class="resultDiv">
-                                    <div class="resltLable">Number of days available per month per resource</div>
-                                    <div class="resltValue">18.33</div>
-                                    </div> 
-                                    <div class="buttonDiv">
-                                      <button mat-raised-button class="button" color="basic" type="button">Reset</button>
-                                      <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                      <button mat-raised-button class="button" color="primary" type="button">Check</button>
-                                    </div>
-                            </mat-card-content>
-
-                     </mat-card>
-                     <mat-card>
-                        <div class="resultDiv">
-                        <div class="resltLable">Cost Per license per annum</div>
-                        <div class="resltValue">64</div>
-                        </div> 
-                        <div class="buttonDiv">
-                          <button mat-raised-button class="button" color="primary" type="button">Save</button>
-                          <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                          <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
-                        </div>
-                     </mat-card>
-        </mat-tab>
-            <!-- Application management -- end--------->
-             <!--Hosting Chargest start-->
-
-<mat-tab label="Hosting charges">
-         
-            <div class="">
-                <div class="blue-ribon">
-                   Hosting Charges - Cost per license per annum
-                </div>
-            </div>
-            
-        <mat-card>
-                <div class="tableHost">
-                   <table>
-                      <thead>
-                         <tr class="table-container-top2">
-                            <th scope="col">NA</th>
-                            <th scope="col">NA</th>
-                         </tr>
-                      </thead>
-                      <tbody>
-                         <tr>
-                            <td  >Cost per  server per month</td>
-                            <td  >
-                               <div class="input-box">
-                                  <div class="form-group">
-                                     <input type="text" class="form-control" placeholder="Text input" value="">
-                                  </div>
-                               </div>
-                            </td>
-                         </tr>
-                         <tr>
-                            <td  >Number of licenses per server</td>
-                            <td  >
-                               <div class="input-box">
-                                  <div class="form-group">
-                                     <input type="text" class="form-control" placeholder="Text input" >
-                                  </div>
-                               </div>
-                            </td>
-                         </tr>
-                         <tr>
-                           <td  >Occupancy %</td>
-                           <td  >
-                              <div class="input-box">
-                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Text input" >
+                              </ng-container>
+                           </tbody>
+                        </table>
+                     </div>
+                     <mat-card-content class="card2">
+                        <mat-grid-list class="belowTable2" cols="2" rowHeight="3:1">
+                           <mat-grid-tile>
+                              <div class="fromFild">
+                                 <mat-card-header class="header1">
+                                    <h1>Productivity %</h1>
+                                 </mat-card-header>
+                                 <div class="fromContent">
+                                    <mat-card-content>
+                                       <div>
+                                          <h2>75%</h2>
+                                       </div>
+                                    </mat-card-content>
                                  </div>
                               </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td  >Cost per licence per month</td>
-                           <td  >
-                           <div class="resltValue">27</div>
-                           </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </div>
-                <div class="buttonDiv">
-                    <button mat-raised-button class="button" color="basic" type="button">Reset</button>
-                    <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <button mat-raised-button class="button" color="primary" type="button">Check</button>
+                           </mat-grid-tile>
+                           <span class="vertical-line"></span>
+                           <mat-grid-tile>
+                              <div class="fromFild">
+                                 <mat-card-header class="header2">
+                                    <h1 >Required Man Days</h1>
+                                 </mat-card-header>
+                                 <div class="fromContent">
+                                    <mat-card-content>
+                                       <div>
+                                          <h2>0.00</h2>
+                                       </div>
+                                    </mat-card-content>
+                                 </div>
+                              </div>
+                           </mat-grid-tile>
+                        </mat-grid-list>
+                        <div class="resultDiv">
+                           <div class="resltLable">Number of days available per month per resource</div>
+                           <div class="resltValue">18.33</div>
+                        </div>
+                        <div class="buttonDiv">
+                           <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+                           <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                           <button mat-raised-button class="button" color="primary" type="button">Check</button>
+                        </div>
+                     </mat-card-content>
+                  </form>
+               </mat-card>
+               <mat-card *ngFor="let tbleObj of appManagementArray.controls">
+                  <div class="resultDiv">
+                     <div class="resltLable">Cost Per license per annum</div>
+                     <div class="resltValue">{{(tbleObj.get('costPerLicense')?.value)*12}}</div>
                   </div>
-                </mat-card>
-
-                   
-           
-
-        
-       <mat-card>
-        <div class="resultDiv">
-        <div class="resltLable">Cost per license per annum</div>
-        <div class="resltValue">320</div>
-        </div> 
-        <div class="buttonDiv">
-          <button mat-raised-button class="button" color="primary" type="button">Save</button>
-          <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
-        </div>
-    </mat-card>
- </mat-tab>
-        <!--Hosting Charges end-->
-
-                
-                    <!--Software Development & Update start-->
-                    <mat-tab label="Software development and update">
-                    <div class="tab__content">
-                       <div class="blue-ribon">
-                          Software Development 
-                       </div>
-                       
-                       <mat-card>
-                        <div class="tableHost2">
-                            <table>
-                               <thead>
-                                  <tr class="table-container-top2">
-                                     <th scope="col">NA</th>
-                                     <th scope="col">NA</th>
-                                  </tr>
-                               </thead>
-                               <tbody>
-                                  <tr>
-                                     <td  >Payment made to IQSS for Software Development</td>
-                                     <td  >
-                                        <div class="input-box">
-                                           <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Text input" >
-                                           </div>
-                                        </div>
-                                     </td>
-                                  </tr>
-                               </tbody>
-                            </table>
-                         </div>
-
-                         <div class="buttonDiv">
-                            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
-                            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            <button mat-raised-button class="button" color="primary" type="button">Check</button>
-                          </div>
-                       </mat-card>
-
-                    
-                       <div class="blue-ribon">
-                          Software Update 
-                       </div>
-                          
-                    <mat-card>
-                        <div class="tableHost3">
+                  <div class="buttonDiv">
+                     <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                     <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                  </div>
+               </mat-card>
+            </mat-tab>
+            <!-- Application management -- end--------->
+            <!--Hosting Chargest start-->
+            <mat-tab label="Hosting charges">
+               <div class="">
+                  <div class="blue-ribon">
+                     Hosting Charges - Cost per license per annum
+                  </div>
+               </div>
+               <mat-card>
+                  <form [formGroup]="hostingChargeForm" (ngSubmit)="hostingChargeUpdate(hostingChargeForm)">
+                     <div class="tableHost">
                         <table>
-                            <thead>
-                               <tr class="table-container-top2">
-                                  <th scope="col">NA</th>
-                                  <th scope="col">NA</th>
-                               </tr>
-                            </thead>
-                            <tbody>
-                               <tr>
-                                  <td  >Annual Software spend planned</td>
-                                  <td  >
-                                     <div class="input-box">
-                                        <div class="form-group">
-                                           <input type="text" class="form-control" placeholder="Text input" >
-                                        </div>
-                                     </div>
-                                  </td>
-                               </tr>
-                               <tr>
-                                  <td  >Number of new clients added	</td>
-                                  <td  >
-                                     <div class="input-box">
-                                        150
-                                     </div>
-                                  </td>
-                               </tr>
-                               <tr>
-                                  <td  >Average license per client</td>
-                                  <td  >
-                                     <div class="input-box">
-                                        <div class="form-group">
-                                           <input type="text" class="form-control" placeholder="Text input" >
-                                        </div>
-                                     </div>
-                                  </td>
-                               </tr>
-                               <tr>
-                                  <td  >Probabilty %</td>
-                                  <td  >
-                                     <div class="input-box">
-                                        80%
-                                     </div>
-                                  </td>
-                               </tr>
-                               <tr>
-                                  <td  >Cost per client per annum</td>
-                                  <td  >
-                                     <div class="input-box">
-                                        833
-                                     </div>
-                                  </td>
-                               </tr>
-                            </tbody>
-                         </table>
-                        </div>
-                        <div class="buttonDiv">
-                            <button mat-raised-button class="button" color="primary" type="button">Save</button>
-                            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
-                          </div>
-                    </mat-card>
-                       
-                    
-                        <mat-card>
-                            <div class="resultDiv">
-                                <div class="resltLable">Software Development Cost Capitalised</div>
-                                <div class="resltValue">1,00,00,000</div>
-                            </div>
-                            <div class="resultDiv">
-                                <div class="resltLable">Cost per license per annum</div>
-                                <div class="resltValue">1,00,00,000</div>
-                            </div>
-                            <div class="buttonDiv">
-                                <button mat-raised-button class="button" color="primary" type="button">Save</button>
-                                <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
-                            </div>
-                        </mat-card>
-                       </div>
-                    </mat-tab>
-                    <!--Software Development & Update end-->
-                <!--Content Cost start-->
-                <mat-tab label="Content cost">    
-                <div class="tab__content">
-                    <div class="blue-ribon">
-                    Content Cost 
-                    </div>
-                    <div class="coll2">
-                    <h3>Content Cost Capitalised in FY 11-12 and FY 12-13</h3>
-                    </div>
-                </div>
-                    <mat-card>
-                    <div class="tableHost">
-                        <table>
-                            <thead>
-                                <tr class="table-container-top2">
-                                    <th scope="col">NA</th>
-                                    <th scope="col">NA</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td  >FY 11-12</td>
-                                    <td  >
-                                    <div class="input-box">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Text input" >
-                                        </div>
-                                    </div>
+                           <thead>
+                              <tr class="table-container-top2">
+                                 <th scope="col">Name</th>
+                                 <th scope="col">Value</th>
+                              </tr>
+                           </thead>
+                           <tbody formArrayName="hostingCharges" *ngFor="let val of hostingChargeArray.controls; let i=index">
+                           <ng-container [formGroupName]="i">
+                              <tr>
+                                 <td>Cost per  server per month</td>
+                                    <td>
+                                       <div class="form-group">
+                                          <input type="text" class="form-control" formControlName="costPerServer">
+                                       </div>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td  >FY 12-13</td>
-                                    <td  >
-                                    <div class="input-box">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
-                                        </div>
-                                    </div>
+                                 </tr>
+                              <tr>
+                                    <td  >Cost per licence per month</td>
+                                    <td> 
+                                       <div class="form-group">
+                                          <input type="text" class="form-control" formControlName="licensePerServer">
+                                       </div>
                                     </td>
-                                </tr>
-                            </tbody>
+                              </tr>
+                              <tr>
+                                    <td>Cost per licence per month</td>
+                                    <td>
+                                       <div class="form-group">
+                                          <input type="text" class="form-control" formControlName="occupancyPercent">
+                                       </div>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>Cost per licence per month</td>
+                                    <td>
+                                       <div><h3>{{val.get('costPerLicense')?.value}}</h3></div>
+                                    </td>
+                              </tr>
+                           </ng-container>
+                           </tbody>
                         </table>
-                    </div>
-                        <div class="buttonDiv">
-                            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
-                            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            <button mat-raised-button class="button" color="primary" type="button">Check</button>
-                        </div>
-                    </mat-card>
-                    
-                    <mat-card>
-                        <div class="col-sm-12 blue-ribon">Content Cost Capitalised</div>
-                        <div class="buttonDiv">
-                            <button mat-raised-button class="button" color="primary" type="button">Save</button>
-                            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
-                          </div>
-                    </mat-card>
-                    
-                
-                </mat-tab>
-                <!--Content Cost end-->
+                     </div>
+                     <div class="buttonDiv">
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                        <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button mat-raised-button class="button" color="primary" type="submit">Update</button>
+                     </div>
+                  </form>
+               </mat-card>
+               <mat-card *ngFor="let val of hostingChargeArray.controls">
+                  <div class="resultDiv">
+                     <div class="resltLable">Cost per license per annum</div>
+                     <div class="resltValue">{{(val.get('costPerLicense')?.value)*12}}</div>
+                  </div>
+                  <div class="buttonDiv">
+                     <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                     <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                  </div>
+               </mat-card>
+            </mat-tab>
+            <!--Hosting Charges end-->
+            <!--Software Development & Update start-->
+            <mat-tab label="Software development and update">
+               <div class="tab__content">
+                  <div class="blue-ribon">
+                     Software Development 
+                  </div>
+                  <mat-card>
+                     <form [formGroup]="softwerDevelopmentForm" (ngSubmit)="softwerDevUpdate(softwerDevelopmentForm)">
+                     <div class="tableHost2">
+                        <table>
+                           <thead>
+                              <tr class="table-container-top2">
+                                 <th scope="col">Name</th>
+                                 <th scope="col">Value</th>
+                              </tr>
+                           </thead>
+                           <tbody formArrayName="softwareDevelopmentAndCosts"  *ngFor="let tableObj of softwerDevelopmentArray.controls;let i=index">
+                              <tr [formGroupName]="i">
+                                 <td>Payment made to IQSS for Software Development</td>
+                                 <td>
+                                    <div class="input-box">
+                                       <div class="form-group">
+                                          <input type="text" class="form-control" formControlName="paymentToIQSS" >
+                                       </div>
+                                    </div>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="buttonDiv">
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                        <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button mat-raised-button class="button" color="primary" type="submit">Update</button>
+                     </div>
+                  </form>
+                  </mat-card>
 
-                
-                    <!--Komrisk Marketing Spend start-->
+                  <div class="blue-ribon">
+                     Software Update 
+                  </div>
 
-                    <mat-tab label="Komrisk Marketing Spend">    
-                        <div class="tab__content">
-                            <div class="blue-ribon">
-                                Komrisk Marketing Spend
-                            </div>
-                        </div>
-                            <mat-card>
-                            <div class="tableHost">
-                                <table>
-                                    <thead>
-                                        <tr class="table-container-top2">
-                                            <th scope="col">NA</th>
-                                            <th scope="col">NA</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td  >Marketing Spend per Annum</td>
-                                            <td  >
-                                            <div class="input-box">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Text input" [value]="AllMarketingSpendData[0].marketingSpendPerYear">
-                                                </div>
-                                            </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td  >Number of new Komrisk Clients</td>
-                                            <td  >
-                                            <div class="input-box">
-                                                <div class="form-group">
-                                                    <h2>150</h2>
-                                                </div>
-                                            </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                                <div class="buttonDiv">
-                                    <button mat-raised-button class="button" color="basic" type="button">Reset</button>
-                                    <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <button mat-raised-button class="button" color="primary" type="button">Check</button>
-                                </div>
-                            </mat-card>
-                            
-                            <mat-card>
-                                <div class="resultDiv">
-                                    <div class="resltLable">Marketing spend per Komrisk Client per annum</div>
-                                    <div class="resltValue">1,00,000</div>
-                                </div>
-                                <div class="buttonDiv">
-                                    <button mat-raised-button class="button" color="primary" type="button">Save</button>
-                                    <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
-                                  </div>
-                            </mat-card>
-
-                     <!--Komrisk Marketing Spend end-->
-
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card>
-    </div>
+                  <mat-card>
+                     <form [formGroup]="softwerUpdateForm" (ngSubmit)="softwerUpdate(softwerUpdateForm)">
+                     <div class="tableHost3">
+                        <table>
+                           <thead>
+                              <tr class="table-container-top2">
+                                 <th scope="col">Name</th>
+                                 <th scope="col">Value</th>
+                              </tr>
+                           </thead>
+                           <tbody formArrayName="softwareUpdates" *ngFor="let tbleObj of softwerUpdateArray.controls;let i=index">
+                              <ng-container [formGroupName]="i">
+                              <tr>
+                                 <td  >Annual Software spend planned</td>
+                                 <td><input type="text" formControlName="softwareSpend"></td>
+                              </tr>
+                              <br>
+                              <tr>
+                                 <td  >Number of new clients added	</td>
+                                 <td  >
+                                    <div class="input-box">
+                                       {{tbleObj.get('newClientsAdded')?.value}}
+                                    </div>
+                                 </td>
+                              </tr>
+                              <br>
+                              <tr>
+                                 <td  >Average license per client</td>
+                                 <td  >
+                                       <div>
+                                          <input type="text" class="form-control" formControlName="averageLicensePerClient" >
+                                       </div>
+                                 </td>
+                              </tr>
+                              <br>
+                              <tr>
+                                 <td  >Probabilty %</td>
+                                 <td  >
+                                    <div class="input-box">
+                                       {{tbleObj.get('probabilityPercent')?.value}}
+                                    </div>
+                                 </td>
+                              </tr>
+                              <br>
+                              <tr>
+                                 <td  >Cost per client per annum</td>
+                                 <td  >
+                                    <div class="input-box">
+                                       {{tbleObj.get('costPerClient')?.value}}
+                                    </div>
+                                 </td>
+                              </tr>
+                           </ng-container>
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="buttonDiv">
+                        <button mat-raised-button class="button" color="primary" type="submit">Save</button>
+                        <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Cancel</button>
+                     </div>
+                  </form>
+                  </mat-card>
+                  <mat-card *ngFor="let tableObj of softwerDevelopmentArray.controls;let i=index">
+                     <div class="resultDiv">
+                        <div class="resltLable">Software Development Cost Capitalised</div>
+                        <div class="resltValue">{{tableObj.get('contentCostCapitalised')?.value | number}}</div>
+                     </div>
+                     <div class="resultDiv">
+                        <div class="resltLable">Cost per license per annum</div>
+                        <div class="resltValue">{{tableObj.get('paymentToIQSS')?.value | number}}</div>
+                     </div>
+                     <div class="buttonDiv">
+                        <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                        <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                     </div>
+                  </mat-card>
+               </div>
+            </mat-tab>
+            <!--Software Development & Update end-->
+            <!--Content Cost start-->
+            <mat-tab label="Content cost">
+               <div class="tab__content">
+                  <div class="blue-ribon">
+                     Content Cost 
+                  </div>
+                  <div class="coll2">
+                     <h3>Content Cost Capitalised in FY 11-12 and FY 12-13</h3>
+                  </div>
+               </div>
+               <mat-card>
+                  <div class="tableHost">
+                     <table>
+                        <thead>
+                           <tr class="table-container-top2">
+                              <th scope="col">NA</th>
+                              <th scope="col">NA</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td  >FY 11-12</td>
+                              <td  >
+                                 <div class="input-box">
+                                    <div class="form-group">
+                                       <input type="text" class="form-control" placeholder="Text input" >
+                                    </div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td  >FY 12-13</td>
+                              <td  >
+                                 <div class="input-box">
+                                    <div class="form-group">
+                                       <input type="text" class="form-control" placeholder="Text input" value="1,00,000">
+                                    </div>
+                                 </div>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="buttonDiv">
+                     <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+                     <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     <button mat-raised-button class="button" color="primary" type="button">Check</button>
+                  </div>
+               </mat-card>
+               <mat-card>
+                  <div class="col-sm-12 blue-ribon">Content Cost Capitalised</div>
+                  <div class="buttonDiv">
+                     <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                     <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                  </div>
+               </mat-card>
+            </mat-tab>
+            <!--Content Cost end-->
+            <!--Komrisk Marketing Spend start-->
+            <mat-tab label="Komrisk Marketing Spend">
+               <div class="tab__content">
+                  <div class="blue-ribon">
+                     Komrisk Marketing Spend
+                  </div>
+               </div>
+               <mat-card>
+                  <form [formGroup]="marketingSpendForm" (ngSubmit)="marketingSpendUpdate(marketingSpendForm)">
+                  <div class="tableHost">
+                     <table>
+                        <thead>
+                           <tr class="table-container-top2">
+                              <th scope="col">Name</th>
+                              <th scope="col">Value</th>
+                           </tr>
+                        </thead>
+                        <tbody formArrayName="marketingSpends" *ngFor="let val of marketingSpendFormArray.controls let i=index">
+                           <ng-container [formGroupName]="i">
+                           <tr>
+                              <td  >Marketing Spend per Annum</td>
+                              <td  >
+                                 <div class="input-box">
+                                    <div class="form-group">
+                                       <input type="text" class="form-control" formControlName="marketingSpendPerYear">
+                                    </div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td  >Number of new Komrisk Clients</td>
+                              <td  >
+                                 <div class="input-box">
+                                    <div class="form-group">
+                                       <h2>{{val.get('komriskClients')?.value}}</h2>
+                                    </div>
+                                 </div>
+                              </td>
+                           </tr>
+                        </ng-container>
+                        </tbody>
+                     </table>
+                  </div>
+                  <div class="buttonDiv">
+                     <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                     <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     <button mat-raised-button class="button" color="primary" type="submit">Update</button>
+                  </div>
+               </form>
+               </mat-card>
+               <mat-card *ngFor="let val of marketingSpendFormArray.controls let i=index">
+                  <div class="resultDiv">
+                     <div class="resltLable">Marketing spend per Komrisk Client per annum</div>
+                     <div class="resltValue">{{(val.get('komriskClients')?.value)*12}}</div>
+                  </div>
+               </mat-card>
+               <!--Komrisk Marketing Spend end-->
+            </mat-tab>
+         </mat-tab-group>
+      </mat-card>
+   </div>
 </div>
-

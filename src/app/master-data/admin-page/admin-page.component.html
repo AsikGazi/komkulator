@@ -1,4 +1,7 @@
 <mat-card>
+    <div style="text-align:right; padding-right: 20px;">
+        <button mat-raised-button color="primary" type="button" (click)="sheet9()">Next</button>
+    </div>
     <mat-card class="card1">
         <table>
             <thead>
@@ -9,8 +12,8 @@
             </thead>
             <tbody>
             <tr>
-                <td>Contend Standard Creation time</td>
-                <td><input type="text"></td>
+                <td>Content Standard Creation time</td>
+                <td><input type="text" value="10"></td>
             </tr>
             </tbody>
         </table>
@@ -25,7 +28,7 @@
     <br>
 
     <mat-card class="card1">
-        <form>
+        <form [formGroup]="adminFormGroup" (ngSubmit)="adminDataUpdate(adminFormGroup)">
             <table>
                 <thead>
                 <tr>
@@ -33,71 +36,71 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody formArrayName="particularsDetails" *ngFor="let tableObj of adminDtaArray.controls;let i=index">
+                <ng-container [formGroupName]="i">
+                <tr>
+                    <td>Name of the Client</td>
+                    <td><input type="text" formControlName="nameOfTheClint" value="ABC pvt"></td>
+                </tr>
                 <tr>
                     <td>Deploymenat Model</td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr >
-                    <td>Deploymenat Model</td>
                     <td>
-                        <select name="cars" id="cars" class="dropDown">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
+                        <select formControlName="deploymentModel" selected="deploymentModel">
+                        <option value="Cloud">Cloud</option>
+                        <option value="Onside">Onsite</option>
                       </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Man day's for content customisation/creation/publishing compliances</td>
-                    <td>260</td>
+                    <td>{{tableObj.get('manDays')?.value}} days</td>
                 </tr>
                 <tr>
                     <td>Men's day effort required for content update for the client per year</td>
-                    <td>51.91</td>
+                    <td>{{tableObj.get('manDaysEffort')?.value}} days</td>
                 </tr>
                 <tr>
                     <td>In case deployment model is onside what is your IT effort estimate</td>
                     <td>
-                        <select class="dropDown">
-                            <option value="volvo">High</option>
-                            <option value="saab">Low</option>
-                        </select>
+                        <select class="dropDown" formControlName="itEffort" selected="itEffort">
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Standard">Standard</option>
+                        </select> effort 
                     </td>
                 </tr>
                 <tr>
                     <td>License fee Moratarium in months</td>
                     <td>
-                        <select class="dropDown">
-                            <option value="volvo">No</option>
-                            <option value="saab">Yes</option>
+                        <select class="dropDown" formControlName="licenceFee">
+                            <option value="No" selected>No</option>
+                            <option value="Yes">Yes</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Number of Days available in a month</td>
-                    <td>18</td>
+                    <td>{{tableObj.get('daysAvailable')?.value}} days</td>
                 </tr>
                 <tr>
                     <td>Number of Licenses Sold</td>
-                    <td>25</td>
+                    <td>{{tableObj.get('licenseSold')?.value}}</td>
                 </tr>
                 <tr>
                     <td>Content created by external consultants</td>
                     <td>
-                        <select class="dropDown">
-                            <option value="volvo">No</option>
-                            <option value="saab">Yes</option>
+                        <select class="dropDown" formControlName="contentCreated" selected="contentCreated">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Is the above content exclusive to client "Exclusive" or can be used by Lexplosion for other clients "Generic"</td>
                     <td>
-                        <select class="dropDown">
-                            <option value="volvo">Exclusive</option>
-                            <option value="saab">Generic</option>
+                        <select class="dropDown" formControlName="exclusiveOrGeneric" selected="exclusiveOrGeneric">
+                            <option value="Exclusive" >Exclusive</option>
+                            <option value="Generic">Generic</option>
                         </select>
                     </td>
                 </tr>
@@ -107,36 +110,38 @@
                 </tr>
                 <tr>
                     <td>Productivity %</td>
-                    <td><input type="text" value="75%"></td>
+                    <td><input type="text"  formControlName="productivityPercent"></td>
                 </tr>
                 <tr>
                     <td>Occupancy %</td>
-                    <td><input type="text" value="50%"></td>
+                    <td><input type="text" formControlName="occupancyPercent"></td>
                 </tr>
                 <tr>
-                    <td>80%</td>
                     <td></td>
+                    <td>{{tableObj.get('probabilityPercent')?.value}}</td>
                 </tr>
                 <tr>
                     <td>Number of New Clients Proposed to be added in FY 14-15</td>
-                    <td><input type="text" value="150"></td>
+                    <td><input type="text" formControlName="newClientsProposed"></td>
                 </tr>
                 <tr>
                     <td>Average licenses proposed to be sold this in FY 14-15</td>
-                    <td><input type="text" value="20"></td>
+                    <td><input type="text" formControlName="licenseProposed"></td>
                 </tr>
                 <tr>
                     <td>Profitablity Benchmark</td>
-                    <td><input type="text" value="Standard"></td>
+                    <td><input type="text" formControlName="profitabilityBenchmark"></td>
                 </tr>
+            </ng-container>
                 </tbody>
             </table>
-        </form>
+        
         <br>
         <div class="buttonDiv">
-            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+            <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
             <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <button mat-raised-button class="button" color="primary" type="button">Save</button>
+            <button mat-raised-button class="button" color="primary" type="submit" >Save</button>
         </div>
+    </form>
     </mat-card>
 </mat-card>

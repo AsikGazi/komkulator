@@ -37,10 +37,18 @@ mat-card{
     height: 40px;
 }
 .totalCalculatedPrice{
-    display: none;
+    
     background-color: #3f51b5;
     color: rgb(255, 255, 255);
     border: 1px solid rgb(255, 255, 255);
     padding-top: 10px;
    
 }
+.switchBttn{
+    text-align: center;
+    left: 100px;
+    padding-left: 1000px;
+}
+:host::ng-deep .mat-select-placeholder {
+    color: rgb(95, 91, 91);
+ } 

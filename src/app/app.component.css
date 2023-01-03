@@ -1,3 +1,4 @@
+html, body {margin: 0; height: 100%; overflow: hidden}
 mat-card{
     overflow: hidden;  
     background-image: url("../assets/img/Login-bg.svg" );
@@ -15,7 +16,7 @@ mat-card-footer{
     width: 100%;
     text-align: center;
     padding-left: 12%;
-    padding-top: 10px;
+    padding-top: 0px;
 
 }
 .lexlogo{
@@ -24,10 +25,7 @@ mat-card-footer{
 }
 .footer{
     display: flex;
-    width: 100%; 
-    text-align: center;
-    padding-left: 12%;
-    padding-top: 10px;
+    padding-left: 13%;
     color: antiquewhite;
 }
 

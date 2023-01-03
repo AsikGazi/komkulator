@@ -12,7 +12,7 @@
     <mat-grid-tile colspan="2">
       <mat-card-content>
             <p class="komkulator">
-              <img src="../../../assets/img/Komprice.svg" alt="" width="200px">
+              <img src="../../../assets/img/Komprice (2).svg" alt="" width="200px">
             </p>
         <hr style="height:1px;border-width:0;color:gray;background-color:gray">
         <h3>Calculate the price with your own choice</h3>
@@ -114,7 +114,7 @@
 
             <span style='margin-right:1.2em'>&nbsp;</span>
             <mat-form-field  appearance="fill" >
-              <mat-label>select compliance Modules required States</mat-label>
+              <mat-label>Select compliance Modules required States</mat-label>
               <mat-select formControlName="statesRequireComplianceModules" class="from-control" name="statesRequireComplianceModules" >
                 <mat-option>Select</mat-option>
                 <mat-option  *ngFor = "let er of states" [value]="er.stateRange">
@@ -150,9 +150,9 @@
           </div>
           
         </form>
-        <div class="totalCalculatedPrice" id="calDiv">
-          <h3><span>One Time fee - &nbsp;</span> &nbsp; &#8377; {{calcultedOneTimeFee}} <br>
-          <span>Monthly Subscription Price - &nbsp;</span> &nbsp; &#8377; {{monthlySubscription}} </h3>
+        <div class="totalCalculatedPrice" [style.visibility]="(numberOfUnreadAlerts == 0) ? 'hidden' : 'visible'">
+          <h3><span>One Time fee - &nbsp;</span> &nbsp; &#8377; {{calcultedOneTimeFee | number}} <br>
+          <span>Monthly Subscription Price - &nbsp;</span> &nbsp; &#8377; {{monthlySubscription | number}} </h3>
         </div>
       </mat-card-content>
     </mat-grid-tile>

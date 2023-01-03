@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { baseUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,89 +21,89 @@ export class ApiService {
   
   loginApi(data: any): Observable<any>{
     console.log("i am server",data);
-    return this.http.post(`http://localhost:8080/authenticate`,data);
+    return this.http.post(baseUrl + `/authenticate`,data);
   }
 
   adminApi(br: any): Observable<any>{
     console.log("i am server",br.headers.Authorization);
-    return this.http.get(`http://localhost:8080/forAdmin`,{ headers: this.getHeaders(br.headers.Authorization) });
+    return this.http.get(baseUrl + `/forAdmin`,{ headers: this.getHeaders(br.headers.Authorization) });
   }
 
   userApi(br: any): Observable<any>{
     console.log("i am server",br.headers.Authorization);
-    return this.http.get(`http://localhost:8080/forUser`,{ headers: this.getHeaders(br.headers.Authorization) });
+    return this.http.get(baseUrl + `/forUser`,{ headers: this.getHeaders(br.headers.Authorization) });
   }
 
 
 
- //.........................User Drop Down Apis..............................//
+//.........................User Drop Down Apis..............................//
             
 
   getEntitieListApi():Observable<any>{
     console.log("getEntitieListApi token >>>", this.headers.Authorization);
-    return this.http.get<any>(`http://localhost:8080/getEntities`,{ headers: this.getHeaders(this.headers.Authorization)});
+    return this.http.get<any>(baseUrl + `/getEntities`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getIndustryTypeListApi():Observable<any>{
-    //console.log("headers >>>", this.headers);
-    return this.http.get<any>(`http://localhost:8080/getIndustryType`,{ headers: this.getHeaders(this.headers.Authorization)});
+   //console.log("headers >>>", this.headers);
+    return this.http.get<any>(baseUrl + `/getIndustryType`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getLegalStructureListApi():Observable<any>{
-    //console.log("headers >>>", this.headers);
-    return this.http.get<any>(`http://localhost:8080/getLegalStructure`,{ headers: this.getHeaders(this.headers.Authorization)});
+   //console.log("headers >>>", this.headers);
+    return this.http.get<any>(baseUrl + `/getLegalStructure`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getListingStatusListApi():Observable<any>{
-    //console.log("headers >>>", this.headers);
-    return this.http.get<any>(`http://localhost:8080/getListingStatus`,{ headers: this.getHeaders(this.headers.Authorization)});
+   //console.log("headers >>>", this.headers);
+    return this.http.get<any>(baseUrl + `/getListingStatus`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
   getStatusListApi():Observable<any>{
-    //console.log("headers >>>", this.headers);
-    return this.http.get<any>(`http://localhost:8080/getStates`,{ headers: this.getHeaders(this.headers.Authorization)});
+   //console.log("headers >>>", this.headers);
+    return this.http.get<any>(baseUrl + `/getStates`,{ headers: this.getHeaders(this.headers.Authorization)});
   }
-  // ................................................... 
+ // ................................................... 
 
 
 //...........calculation API start .................
   calculationApi(formData: any){
     console.log("calculationApi--",formData)
-    return this.http.post<any>(`http://localhost:8080/calculatePrice`,formData,{headers: this.getHeaders(this.headers.Authorization)});
+    return this.http.post<any>(baseUrl + `/calculatePrice`,formData,{headers: this.getHeaders(this.headers.Authorization)});
   }
 //................calculation API end ...........................
 
 
 
 
-////////////// master data form ///////////////////////////
+////////////// master data form///////////////////////////
 getContentCustomizationDataApi():Observable<any>{
   
-  return this.http.get<any>(`http://localhost:8080/getAllContentCustomization`,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getAllContentCustomization`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllContentUpdatesDataApi():Observable<any>{
   console.log("getAllContentUpdatesDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
-  return this.http.get<any>(`http://localhost:8080/getAllContentUpdates`,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getAllContentUpdates`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllCustomerSupportDataApi():Observable<any>{
   
-  return this.http.get<any>(`http://localhost:8080/getAllCustomerSupport`,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getAllCustomerSupport`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllAppManagementDatApi():Observable<any>{
   console.log("getAllAppManagementDatApi----",{headers: this.getHeaders(this.headers.Authorization)});
-  return this.http.get<any>(`http://localhost:8080/getAllAppManagement`,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getAllAppManagement`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllHostingChargesDatApi():Observable<any>{
   console.log("getAllHostingChargesDatApi----",{headers: this.getHeaders(this.headers.Authorization)});
-  return this.http.get<any>(`http://localhost:8080/getAllHostingCharges`,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getAllHostingCharges`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllSoftwareUpdatesDataApi():Observable<any>{
   console.log("getAllSoftwareUpdatesDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
-  return this.http.get<any>(`http://localhost:8080/getAllSoftwareUpdates`,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getAllSoftwareUpdates`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllDevelopmentAndCostDataApi():Observable<any>{
   console.log("getAllDevelopmentAndCostDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
-  return this.http.get<any>(`http://localhost:8080/getAllDevelopmentAndCost`,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getAllDevelopmentAndCost`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 getAllMarketingSpendDataApi():Observable<any>{
   console.log("getAllMarketingSpendDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
-  return this.http.get<any>(`http://localhost:8080/getAllMarketingSpend`,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getAllMarketingSpend`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -110,51 +111,107 @@ getAllMarketingSpendDataApi():Observable<any>{
 
 updateContentCustomizationDataApi(formData: any): Observable<any>{
   console.log("-+-",formData)
-  return this.http.put<any>(`http://localhost:8080/updateContentCustomization`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.put<any>(baseUrl + `/updateContentCustomization`, formData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
 updateUpdateDataApi(formData: any): Observable<any>{
   console.log("-+-",formData)
-  return this.http.put<any>(`http://localhost:8080/updateContentUpdates`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.put<any>(baseUrl + `/updateContentUpdates`, formData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
 customerSupportDataApi(formData: any): Observable<any>{
   console.log("-+-",formData)
-  return this.http.put<any>(`http://localhost:8080/updateCustomerSupport`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.put<any>(baseUrl + `/updateCustomerSupport`, formData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
 hostingChargeDataApi(formData: any): Observable<any>{
   console.log("-+-",formData)
-  return this.http.put<any>(`http://localhost:8080/updateHostingCharges`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.put<any>(baseUrl + `/updateHostingCharges`, formData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
 softwerDevDataApi(formData: any): Observable<any>{
   console.log("-+-",formData)
-  return this.http.put<any>(`http://localhost:8080/updateDevelopmentAndCost`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.put<any>(baseUrl + `/updateDevelopmentAndCost`, formData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
 softwerUpdateDataApi(formData: any): Observable<any>{
   console.log("-+-",formData)
-  return this.http.put<any>(`http://localhost:8080/updateSoftwareUpdates`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.put<any>(baseUrl + `/updateSoftwareUpdates`, formData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
 markatingUpdateDataApi(formData: any): Observable<any>{
   console.log("-+-",formData)
-  return this.http.put<any>(`http://localhost:8080/updateMarketingSpend`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.put<any>(baseUrl + `/updateMarketingSpend`, formData,{headers: this.getHeaders(this.headers.Authorization)});
 }
+
 
 
 
 
 //.........................AdminDataGetApi..........................
 getAdminData(): Observable<any>{
-  return this.http.get<any>(`http://localhost:8080/getParticularsDetails`,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getParticularsDetails`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
 //.. Admin Data Update......
 updateAdminData(fromData: any):Observable<any>{
-  return this.http.put<any>(`http://localhost:8080/updateParticularsDetails`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.put<any>(baseUrl + `/updateParticularsDetails`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//.............................Sheet9-GET DATA.......................................
+
+getHeadCountDataApi():Observable<any>{
+  console.log("getCompanyTypeDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getHeadcount`,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
+getCompanyTypeDataApi():Observable<any>{
+  console.log("getCompanyTypeDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getCompanyType`,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+getLegalStractureDataApi():Observable<any>{
+  console.log("getLegalStractureDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getLegalStructure`,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+getCompanyRevenueDataApi():Observable<any>{
+  console.log("getCompanyRevenueDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getCompanyRevenue`,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+getEntitiesDataApi():Observable<any>{
+  console.log("getEntitiesDataApi----",{headers: this.getHeaders(this.headers.Authorization)});
+  return this.http.get<any>(baseUrl + `/getEntities`,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+
+
+//...................Update APIS.............Sheet9.......
+
+updateCompanyTypeData(fromData: any):Observable<any>{
+  return this.http.put<any>(baseUrl + `/updateCompanyType`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+entitiesData(fromData: any):Observable<any>{
+  return this.http.put<any>(baseUrl + `/updateEntities`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+
+}
