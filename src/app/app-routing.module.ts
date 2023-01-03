@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginFormComponent } from './login/login-form/login-form.component';
-import { MasterDataFromComponent } from './master-data/master-data-from/master-data-from.component';
-import { UserHomePageComponent } from './user/user-home-page/user-home-page.component';
-import { LoginFormsComponent } from './login/login-forms/login-forms.component';
-import { Sheet9Component } from './master-data/sheet9/sheet9.component';
-import { AdminPageComponent } from './master-data/admin-page/admin-page.component';
+import { LoginFormComponent } from './Modules/AuthModule/login/login-form/login-form.component';
+import { MasterDataFromComponent } from './Modules/MasterDataModule/master-data/master-data-from/master-data-from.component';
+import { UserHomePageComponent } from './Modules/UserModule/user/user-home-page/user-home-page.component';
+// import { LoginFormsComponent } from './Modules/AuthModule/login/login-forms/login-forms.component';
+import { Sheet9Component } from './Modules/MasterDataModule/master-data/sheet9/sheet9.component';
+import { AdminPageComponent } from './Modules/MasterDataModule/master-data/admin-page/admin-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginFormComponent },

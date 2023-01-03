@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserHomePageComponent } from './user-home-page/user-home-page.component';
 
-import { MaterialModule } from '../material.module';
+import { MaterialModule } from 'src/app/Shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PopUpComponent } from './pop-up/pop-up.component';
 
