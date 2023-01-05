@@ -12,19 +12,44 @@ import { Router } from '@angular/router';
 export class AdminPageComponent implements OnInit {
 
   public adminFormGroup!:FormGroup;
+  public contentCreationTimeFormGroup!: FormGroup;
 
   adminData: any
+  creationTime: any
+
 
   constructor(public FormBuilder: FormBuilder, private apiService: ApiService, private router:Router) { }
 
   ngOnInit(): void {
     this.initAdminFrom();
     this.getAdminData();
+
+    this.initsetCreationTimeFrom();
+    this.getCreationTime();
+    
   }
 
 sheet9(){
   this.router.navigate(['sheet9']);
 }
+
+// getCreationTime......... and Send.............
+getCreationTime(){
+  this.apiService.getCreationTimeFunction().subscribe(res=>{
+    this.creationTime= res;
+    this.setCreationTimeFrom(this.creationTime);
+  })
+}
+
+contentTimeUpdate(fromdata: any){
+  this.apiService.updateCalculationTimeData(fromdata.value).subscribe(res=>{
+    if(res){
+      this.getAdminData();
+      this.initAdminFrom();
+    }
+  })
+}
+
 
   //.... getAdminData.............
   getAdminData(){
@@ -47,6 +72,42 @@ adminDataUpdate(adminDataForm: any){
     })
 
   }
+
+
+//coninitsetCreationTimeFrom start...............
+
+initsetCreationTimeFrom(){
+  this.contentCreationTimeFormGroup = this.FormBuilder.group({
+    productId: "1",
+    productName: "Komrisk",
+    creationTimes: this.FormBuilder.array([])
+  })
+}
+
+getContentTimeFormGroup(contentCustomizationsTimeSingleData:any){
+  return this.FormBuilder.group({
+    creationTimeId: [contentCustomizationsTimeSingleData.creationTimeId],
+    contentStandardCreationTime: [contentCustomizationsTimeSingleData.contentStandardCreationTime]
+    });
+}
+
+
+setCreationTimeFrom(formDta:any){
+  let dataContener = this.customTimeArray;
+  console.log("jjjjjjjjjj--",formDta);
+  for(let i=0;i<formDta.length;i++){
+    dataContener.push(this.getContentTimeFormGroup(formDta[i]));
+  }
+  console.log("contentTime--",this.customTimeArray);  
+}
+
+get customTimeArray(){
+  return this.contentCreationTimeFormGroup.get('creationTimes') as FormArray;
+}
+
+
+
+
 
 
 //from Build.........
@@ -76,6 +137,7 @@ adminDataUpdate(adminDataForm: any){
           licenseProposed: [contentCustomizationsSingleData.licenseProposed],
           profitabilityBenchmark: [contentCustomizationsSingleData.profitabilityBenchmark],
           licenceFee:[],
+          nameOfTheClint: []
 
       });
   }

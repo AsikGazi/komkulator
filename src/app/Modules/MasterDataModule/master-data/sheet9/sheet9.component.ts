@@ -61,7 +61,7 @@ export class Sheet9Component implements OnInit {
 
 getHeadCountData(){
   this.apiService.getHeadCountDataApi().subscribe(res=>{
-  console.log("HeadCount-",res);
+  console.log("HeadCount-Sheet9-",res);
   this.HeadCount = res;
   this.generateHeadCountFormData(this.HeadCount);
   })
@@ -69,7 +69,7 @@ getHeadCountData(){
 
   getCompanyTypeData(){
     this.apiService.getCompanyTypeDataApi().subscribe(res=>{
-    console.log("CompanyType-",res);
+    console.log("Sheet9-CompanyType-",res.value);
     this.CompanyType = res;
     this.generateCompanyTypeFormData(this.CompanyType);
     })
@@ -77,7 +77,7 @@ getHeadCountData(){
 
   getLegalStractureData(){
     this.apiService.getLegalStractureDataApi().subscribe(res=>{
-      console.log("LegalStracture-",res);
+      console.log("Sheet9-LegalStracture-",res.value);
       this.LegalStracture = res;
       this.generateLegalStractureFormData(this.LegalStracture);
     })
@@ -85,14 +85,14 @@ getHeadCountData(){
 
   getCompanyRevenueData(){
     this.apiService.getCompanyRevenueDataApi().subscribe(res=>{
-      console.log("getCompanyRevenueData-",res);
+      console.log("Sheet9-getCompanyRevenueData-",res.value);
       this.CompanyRevenue = res;
       this.generateCompanyRevenueFormData(this.CompanyRevenue);
     })
   }
   getEntitiesData(){
     this.apiService.getEntitiesDataApi().subscribe(res=>{
-      console.log("getEntitiesData-",res);
+      console.log("Sheet9-getEntitiesData-",res.value);
       this.Entities = res;
       this.generateEntitesFormData(this.Entities);
     })

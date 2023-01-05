@@ -185,11 +185,8 @@ mat-grid-tile-content{
 .resultDiv{
     background: #5fa9d7;
     padding: 6px 40px;
-    /* color: #ffffff; */
     border-radius: 12px;
-    /* margin-top: 38px; */
     margin-bottom: 15px;
-    /* text-align: left;*/
 }
 .resltLable{
     text-align: left;
@@ -222,8 +219,6 @@ h2{
 .card2{
     margin: 0%;
     text-align: center;
-    background-color: rgb(255, 255, 255);
-    margin-top: 0%;
     margin-bottom: -20%;
 }
 .subTit{
@@ -276,4 +271,22 @@ h1 {
     font: 399 20px/19px Roboto, "Helvetica Neue", sans-serif;
     letter-spacing: normal;
     margin: 0 0 16px;
+}
+.box{
+    background: #ffffff;
+    padding: 2rem 0px;
+}
+.col-sm-10{
+    position: relative;
+    width: 74%;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.col-sm-2{
+    position: relative;
+    width: 20%;
+    float: left;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

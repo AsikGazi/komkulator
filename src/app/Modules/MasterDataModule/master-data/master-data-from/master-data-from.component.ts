@@ -71,6 +71,10 @@ export class MasterDataFromComponent implements OnInit {
     this.router.navigate(['sheet9']);
   }
 
+  admin(){
+    this.router.navigate(['user']);
+  }
+
   //..................content Customization.......................
 
   initContentCustomForm(){

@@ -3,6 +3,7 @@
         <button mat-raised-button color="primary" type="button" (click)="sheet9()">Next</button>
     </div>
     <mat-card class="card1">
+        <form [formGroup]="contentCreationTimeFormGroup" (ngSubmit)="contentTimeUpdate(contentCreationTimeFormGroup)">
         <table>
             <thead>
             <tr>
@@ -10,19 +11,20 @@
                 <th width="50%">Value</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
+            <tbody formArrayName="creationTimes" *ngFor="let tableObj of customTimeArray.controls;let i=index">
+            <tr [formGroupName]="i">
                 <td>Content Standard Creation time</td>
-                <td><input type="text" value="10"></td>
+                <td><input type="text" formControlName="contentStandardCreationTime"></td>
             </tr>
             </tbody>
         </table>
         <br>
         <div class="buttonDiv">
-            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+            <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
             <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <button mat-raised-button class="button" color="primary" type="button">Save</button>
+            <button mat-raised-button class="button" color="primary" type="submit">Save</button>
         </div>
+    </form>
     </mat-card>
 
     <br>

@@ -1,6 +1,8 @@
 <div class="container">
    <div style="text-align:right; padding-right: 60px;">
       <button mat-raised-button color="primary" type="button" (click)="sheet9()">Previous</button>
+      <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <button mat-raised-button color="primary" type="button" (click)="admin()">Next</button>
   </div>
    <div class="content">
       <mat-card class="maincard">
@@ -13,7 +15,7 @@
                   </div>
                   <div class="content-eliment">
                      <div class="txt-box1">
-                        <h3 class="m-0">Man Days effort for customization per new client</h3>
+                        <h3 class="m-0">Man Days effort for customization per new client (in days)</h3>
                      </div>
                      <div class="blue-txt-box1">
                         <h3 class="m-0">260</h3>
@@ -97,9 +99,9 @@
                      </form>
                   </mat-card>
                   <mat-card>
-                     <div class="resultDiv">
-                        <div class="resltLable">Total Cost for Content Updates</div>
-                        <div class="resltValue">{{totalContentCost | number}}</div>
+                     <div class="box">
+                        <div class="col-sm-10 blue-ribon">Total Cost for Content Updates</div>
+                        <div class="col-sm-2 blue-ribon">{{totalContentCost | number}}</div>
                      </div>
                      <div class="buttonDiv">
                         <button mat-raised-button class="button" color="primary" type="button">Save</button>
@@ -204,9 +206,9 @@
                      </form>
                   </mat-card>
                   <mat-card>
-                     <div class="resultDiv">
-                        <div class="resltLable">Total Cost for Content Updates</div>
-                        <div class="resltValue">{{totalContentUpdateCost | number}}</div>
+                     <div class="box">
+                        <div class="col-sm-10 blue-ribon">Total Cost for Content Updates</div>
+                        <div class="col-sm-2 blue-ribon">{{totalContentUpdateCost | number}}</div>
                      </div>
                      <div class="buttonDiv">
                         <button mat-raised-button class="button" color="primary" type="button">Save</button>
@@ -325,9 +327,9 @@
                   </table>
                   <br>
                   <br>
-                  <div class="resultDiv">
-                     <div class="resltLable">Number of days available per month per resource</div>
-                     <div class="resltValue">18.33</div>
+                  <div class="box">
+                     <div class="col-sm-10 blue-ribon">Number of days available per month per resource</div>
+                     <div class="col-sm-2 blue-ribon">18.33</div>
                   </div>
                   <div class="buttonDiv">
                      <button mat-raised-button class="button" color="basic" type="button">Reset</button>
@@ -337,9 +339,9 @@
                </mat-card>
                </form>
                <mat-card>
-                  <div class="resultDiv">
-                     <div class="resltLable">Total Cost for Content Updates</div>
-                     <div class="resltValue">756.36  </div>
+                  <div class="box">
+                     <div class="col-sm-10 blue-ribon">Total Cost for Content Updates</div>
+                     <div class="col-sm-2 blue-ribon">756.36  </div>
                   </div>
                   <div class="buttonDiv">
                      <button mat-raised-button class="button" color="primary" type="button">Save</button>
@@ -434,9 +436,9 @@
                               </div>
                            </mat-grid-tile>
                         </mat-grid-list>
-                        <div class="resultDiv">
-                           <div class="resltLable">Number of days available per month per resource</div>
-                           <div class="resltValue">18.33</div>
+                        <div class="box">
+                           <div class="col-sm-10 blue-ribon">Number of days available per month per resource</div>
+                           <div class="col-sm-2 blue-ribon">18.33</div>
                         </div>
                         <div class="buttonDiv">
                            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
@@ -447,9 +449,9 @@
                   </form>
                </mat-card>
                <mat-card *ngFor="let tbleObj of appManagementArray.controls">
-                  <div class="resultDiv">
-                     <div class="resltLable">Cost Per license per annum</div>
-                     <div class="resltValue">{{(tbleObj.get('costPerLicense')?.value)*12}}</div>
+                  <div class="box">
+                     <div class="col-sm-10 blue-ribon">Cost Per license per annum</div>
+                     <div class="col-sm-2 blue-ribon">{{(tbleObj.get('costPerLicense')?.value)*12}}</div>
                   </div>
                   <div class="buttonDiv">
                      <button mat-raised-button class="button" color="primary" type="button">Save</button>
@@ -520,9 +522,9 @@
                   </form>
                </mat-card>
                <mat-card *ngFor="let val of hostingChargeArray.controls">
-                  <div class="resultDiv">
-                     <div class="resltLable">Cost per license per annum</div>
-                     <div class="resltValue">{{(val.get('costPerLicense')?.value)*12}}</div>
+                  <div class="box">
+                     <div class="col-sm-10 blue-ribon">Cost per license per annum</div>
+                     <div class="col-sm-2 blue-ribon">{{(val.get('costPerLicense')?.value)*12}}</div>
                   </div>
                   <div class="buttonDiv">
                      <button mat-raised-button class="button" color="primary" type="button">Save</button>
@@ -638,13 +640,13 @@
                   </form>
                   </mat-card>
                   <mat-card *ngFor="let tableObj of softwerDevelopmentArray.controls;let i=index">
-                     <div class="resultDiv">
-                        <div class="resltLable">Software Development Cost Capitalised</div>
-                        <div class="resltValue">{{tableObj.get('contentCostCapitalised')?.value | number}}</div>
+                     <div class="box">
+                        <div class="col-sm-10 blue-ribon">Software Development Cost Capitalised</div>
+                        <div class="col-sm-2 blue-ribon">{{tableObj.get('contentCostCapitalised')?.value | number}}</div>
                      </div>
-                     <div class="resultDiv">
-                        <div class="resltLable">Cost per license per annum</div>
-                        <div class="resltValue">{{tableObj.get('paymentToIQSS')?.value | number}}</div>
+                     <div class="box">
+                        <div class="col-sm-10 blue-ribon">Cost per license per annum</div>
+                        <div class="col-sm-2 blue-ribon">{{tableObj.get('paymentToIQSS')?.value | number}}</div>
                      </div>
                      <div class="buttonDiv">
                         <button mat-raised-button class="button" color="primary" type="button">Save</button>
@@ -765,10 +767,11 @@
                </form>
                </mat-card>
                <mat-card *ngFor="let val of marketingSpendFormArray.controls let i=index">
-                  <div class="resultDiv">
-                     <div class="resltLable">Marketing spend per Komrisk Client per annum</div>
-                     <div class="resltValue">{{(val.get('komriskClients')?.value)*12}}</div>
+                  <div class="box">
+                     <div class="col-sm-10 blue-ribon">Marketing spend per Komrisk Client per annum</div>
+                     <div class="col-sm-2 blue-ribon">{{(val.get('komriskClients')?.value)*12}}</div>
                   </div>
+                  <div class="box"></div>
                </mat-card>
                <!--Komrisk Marketing Spend end-->
             </mat-tab>

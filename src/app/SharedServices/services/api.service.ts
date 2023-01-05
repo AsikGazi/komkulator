@@ -9,6 +9,8 @@ import { baseUrl } from 'src/environments/environment';
 export class ApiService {
   headers: any
   br : any
+  fromIndicater : any = false;
+
   constructor(private http : HttpClient) { }
 
   private getHeaders(token: any): HttpHeaders{
@@ -26,11 +28,13 @@ export class ApiService {
 
   adminApi(br: any): Observable<any>{
     console.log("i am server",br.headers.Authorization);
-    return this.http.get(baseUrl + `/forAdmin`,{ headers: this.getHeaders(br.headers.Authorization) });
+    this.fromIndicater = true;
+    return this.http.get(baseUrl + `/forAdmin`,{ headers: this.getHeaders(br.headers.Authorization)} );
   }
 
   userApi(br: any): Observable<any>{
     console.log("i am server",br.headers.Authorization);
+    this.fromIndicater = false;
     return this.http.get(baseUrl + `/forUser`,{ headers: this.getHeaders(br.headers.Authorization) });
   }
 
@@ -41,7 +45,8 @@ export class ApiService {
 
   getEntitieListApi():Observable<any>{
     console.log("getEntitieListApi token >>>", this.headers.Authorization);
-    return this.http.get<any>(baseUrl + `/getEntities`,{ headers: this.getHeaders(this.headers.Authorization)});
+      return this.http.get<any>(baseUrl + `/getEntities`,{ headers: this.getHeaders(this.headers.Authorization)});
+    
   }
   getIndustryTypeListApi():Observable<any>{
    //console.log("headers >>>", this.headers);
@@ -146,8 +151,15 @@ markatingUpdateDataApi(formData: any): Observable<any>{
 
 
 
-
-
+// get congetCreationTimeFunction................
+getCreationTimeFunction(){
+  return this.http.get<any>(baseUrl + `/getCreationTime`,{headers: this.getHeaders(this.headers.Authorization)});
+}
+// update........
+updateCalculationTimeData(fromData: any):Observable<any>{
+  console.log("plpl",fromData)
+  return this.http.put<any>(baseUrl + `/updateCreationTime`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
 //.........................AdminDataGetApi..........................
 getAdminData(): Observable<any>{
   return this.http.get<any>(baseUrl + `/getParticularsDetails`,{headers: this.getHeaders(this.headers.Authorization)});
@@ -157,6 +169,9 @@ getAdminData(): Observable<any>{
 updateAdminData(fromData: any):Observable<any>{
   return this.http.put<any>(baseUrl + `/updateParticularsDetails`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
 }
+
+
+
 
 
 

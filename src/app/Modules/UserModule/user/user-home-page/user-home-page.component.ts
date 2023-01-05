@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/SharedServices/services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { FormBuilder,FormControl,FormGroup} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-home-page',
@@ -38,11 +39,14 @@ export class UserHomePageComponent implements OnInit{
   calcultedOneTimeFee: any;
   monthlySubscription: any;
 
+  intigate :any = false;
+
  
 
-  constructor(private apiService : ApiService, public dialog: MatDialog, private FormBuilder: FormBuilder ) { }
+  constructor(private apiService : ApiService, private router:Router,public dialog: MatDialog, private FormBuilder: FormBuilder ) { }
    
   ngOnInit(): void {
+   this.formIndicate();
    this.intCalculationForm();
    this.getEntitieList();
    this.getIndustryTypeList();
@@ -51,8 +55,21 @@ export class UserHomePageComponent implements OnInit{
    this.getStatusList();
   }
 
+  val: any
 
+  formIndicate(){
+   this.val = this.apiService.fromIndicater;
+    if(this.val){
+      this.intigate = true;
+    }else{
+      this.intigate = false;
+    }
+    return this.intigate;
+  }
    
+  routToTheUserPage(){
+    this.router.navigate(['masterDataForm']);
+  }
 
   intCalculationForm(){
     this.calculationForm = this.FormBuilder.group({
@@ -123,7 +140,8 @@ calculationFunction(formValue: any){
     this.apiService.getEntitieListApi().subscribe(res=>{
       this.entities = res;
       console.log("under the api call of getEntitieListApi-",this.entities);
-    })
+    },
+)
   }
 
   getIndustryTypeList(){

@@ -13,7 +13,9 @@
       <mat-card-content>
             <p class="komkulator">
               <img src="../../../assets/img/Komprice (2).svg" alt="" width="200px">
+              <span class="routeBtn" *ngIf="intigate == true"><button mat-raised-button color="primary" style="left: 155%;top: 20%;" (click)="routToTheUserPage()">Master Data Form</button></span>
             </p>
+            
         <hr style="height:1px;border-width:0;color:gray;background-color:gray">
         <h3>Calculate the price with your own choice</h3>
         
@@ -29,7 +31,7 @@
            
             <mat-form-field  appearance="fill"  >
               <mat-label>Select Number of entities</mat-label>
-              <mat-select formControlName="noOfEntities" class="from-control"  name="entity">
+              <mat-select formControlName="noOfEntities" class="from-control"  name="entity" required>
                 <mat-option>Select</mat-option>
                  <mat-option  *ngFor = "let er of entities" [value]="er.entityRange">
                   {{er.entityRange}}
@@ -42,14 +44,14 @@
           <div class="form-group">
             <mat-form-field appearance="fill">
               <mat-label>Select Industry of operation</mat-label>
-              <input matInput formControlName="operatingIndustries" class="from-control" name="operatingIndustries"  >
+              <input matInput formControlName="operatingIndustries" class="from-control" name="operatingIndustries" required>
             </mat-form-field>
 
             <span style='margin-right:1.2em'>&nbsp;</span>
             
             <mat-form-field class="typeOfIndustryFormFil" appearance="fill"> 
               <mat-label>&nbsp;Select Type of industry </mat-label>
-              <mat-select formControlName="typeOfIndustry" class="from-control" name="typeOfIndustry" >
+              <mat-select formControlName="typeOfIndustry" class="from-control" name="typeOfIndustry" required>
                 <mat-option>Select</mat-option>
                 <mat-option  *ngFor = "let er of typeOfIndust" [value]="er.industryTypeName">
                   {{er.industryTypeName}}
@@ -63,7 +65,7 @@
           <div class="form-group">
             <mat-form-field appearance="fill">
               <mat-label>Select Legal structure of the organisation</mat-label>
-              <mat-select  formControlName="organisationLegalStructure" class="from-control" name="organisationLegalStructure" >
+              <mat-select  formControlName="organisationLegalStructure" class="from-control" name="organisationLegalStructure" required>
                 <mat-option>Select</mat-option>
                 <mat-option  *ngFor = "let er of legalStracture" [value]="er.structureType">
                   {{er.structureType}}
@@ -74,7 +76,7 @@
 
             <mat-form-field  appearance="fill">
               <mat-label>Select Listing Status</mat-label>
-              <mat-select formControlName="organisationListingStatus" class="from-control" name="organisationListingStatus" >
+              <mat-select formControlName="organisationListingStatus" class="from-control" name="organisationListingStatus" required>
                 <mat-option>Select</mat-option>
                 <mat-option  *ngFor = "let er of listingStatus" [value]="er.listingType">
                   {{er.listingType}}
@@ -85,7 +87,7 @@
 
           <div class="form-group">
             <mat-form-field appearance="fill">
-              <mat-select placeholder="Select Modules" [formControl]="toppings" [(value)]="selectedModules" multiple>
+              <mat-select placeholder="Select Modules" [formControl]="toppings" [(value)]="selectedModules" multiple required>
                 <mat-option *ngFor="let topping of moduleList" [value]="topping">{{topping}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -115,7 +117,7 @@
             <span style='margin-right:1.2em'>&nbsp;</span>
             <mat-form-field  appearance="fill" >
               <mat-label>Select compliance Modules required States</mat-label>
-              <mat-select formControlName="statesRequireComplianceModules" class="from-control" name="statesRequireComplianceModules" >
+              <mat-select formControlName="statesRequireComplianceModules" class="from-control" name="statesRequireComplianceModules" required>
                 <mat-option>Select</mat-option>
                 <mat-option  *ngFor = "let er of states" [value]="er.stateRange">
                   {{er.stateRange}}
@@ -126,7 +128,7 @@
           <div class="form-group">
             <mat-form-field appearance="fill">
               <mat-label>Select Number of licenses</mat-label>
-              <mat-select formControlName="noOfLicenseRequired" name="noOfLicenseRequired" >
+              <mat-select formControlName="noOfLicenseRequired" name="noOfLicenseRequired" required>
                 <mat-option>Select</mat-option>
                 <mat-option value="25">25</mat-option>
                 <mat-option value="50">50</mat-option>
@@ -138,7 +140,7 @@
             <span style='margin-right:1.2em'>&nbsp;</span>
             <mat-form-field  appearance="fill" >
               <mat-label>Select Contract Term (Minimum of 2 years)</mat-label>
-              <mat-select formControlName="contractTerm" name="contractTerm" >
+              <mat-select formControlName="contractTerm" name="contractTerm" required>
                 <mat-option>Select</mat-option>
                 <mat-option value="3">3</mat-option>
                 <mat-option value="5">5</mat-option>

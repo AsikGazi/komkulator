@@ -9,7 +9,7 @@ mat-card{
     padding-bottom: 0px;
 }
 .card1{
-    background-image: url("../../../assets/img/login-inner-bg.svg");
+    background-image: url("../../../../../assets/img/login-inner-bg.svg");
 }
 .komkulator{
     display:flex;
@@ -52,3 +52,7 @@ mat-card{
 :host::ng-deep .mat-select-placeholder {
     color: rgb(95, 91, 91);
  } 
+ .routeBtn{
+    left: 150%;
+    top: 9px;
+}
