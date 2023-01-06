@@ -220,13 +220,36 @@ getEntitiesDataApi():Observable<any>{
 
 //...................Update APIS.............Sheet9.......
 
-updateCompanyTypeData(fromData: any):Observable<any>{
+updateCompanyTypeDataUpdateApi(fromData: any):Observable<any>{
   return this.http.put<any>(baseUrl + `/updateCompanyType`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
-entitiesData(fromData: any):Observable<any>{
+companyRevenueUpdateApi(fromData: any):Observable<any>{
+  return this.http.put<any>(baseUrl + `/updateCompanyRevenue`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+entitiesDataUpdateApi(fromData: any):Observable<any>{
   return this.http.put<any>(baseUrl + `/updateEntities`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
+typeOfIndustryDataUpdateApi(fromData: any):Observable<any>{
+  return this.http.put<any>(baseUrl + `/updateIndustryType`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+StatesDataUpdateApi(fromData: any):Observable<any>{
+  return this.http.put<any>(baseUrl + `/updateStates`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+listingUpdateApi(fromData: any):Observable<any>{
+  return this.http.put<any>(baseUrl + `/updateListingStatus`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+headCountUpdateApi(fromData: any):Observable<any>{
+  return this.http.put<any>(baseUrl + `/updateHeadcount`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
+
+legalStractureUpdateApi(fromData: any):Observable<any>{
+  return this.http.put<any>(baseUrl + `/updateLegalStructure`,fromData,{headers: this.getHeaders(this.headers.Authorization)});
+}
 
 }

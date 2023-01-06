@@ -16,7 +16,10 @@ export class Sheet9Component implements OnInit {
   LegalStracture:any=[];
   CompanyRevenue:any=[];
   Entities:any=[];
+  states: any = []
   HeadCount: any=[];
+  listingStatus: any=[];
+  typeOfIndust: any =[];
 
 
   public companyTypeFormGroup!: FormGroup;
@@ -24,6 +27,9 @@ export class Sheet9Component implements OnInit {
   public LegalStractureFormGroup!: FormGroup;
   public EntitiesFormGroup!: FormGroup;
   public HeadCountGroup!: FormGroup;
+  public StatesGroup!: FormGroup;
+  public ListingStatusFormGroup!:FormGroup;
+  public TypeOfIndustryFormGroup!: FormGroup;
   
 
 
@@ -36,6 +42,10 @@ export class Sheet9Component implements OnInit {
     this.initLegalStractureForm();
     this.iniEntitiesForm();
     this.initHeadCountForm();
+    this.initStatesForm();
+    this.initListingStatusForm();
+    this.initTypeOfIndustryForm();
+    
 
 
     this.getCompanyTypeData();
@@ -43,6 +53,9 @@ export class Sheet9Component implements OnInit {
     this.getCompanyRevenueData();
     this.getEntitiesData();
     this.getHeadCountData();
+    this.getNoOfStates();
+    this.getListingStatusList();
+    this.getIndustryTypeList();
   }
 
   resetFrom(){
@@ -97,6 +110,31 @@ getHeadCountData(){
       this.generateEntitesFormData(this.Entities);
     })
   }
+  getNoOfStates(){
+    this.apiService.getStatusListApi().subscribe(res=>{
+      console.log("Sheet9-getEntitiesData-",res);
+      this.states = res;
+      this.generateStatesFormData(this.states);
+    })
+  }
+
+  getListingStatusList(){
+    this.apiService.getListingStatusListApi().subscribe(res=>{
+      this.listingStatus = res;
+      console.log("Sheet9 getListingStatusListApi-",this.listingStatus);
+      this.generateListingStatusFormData(this.listingStatus);
+    })
+  }
+
+  getIndustryTypeList(){
+    this.apiService.getIndustryTypeListApi().subscribe(res=>{
+      this.typeOfIndust = res;
+      console.log("-",this.typeOfIndust);
+      this.generateTypeOfIndustryFormData(this.typeOfIndust);
+    })
+  }
+
+
 
 
 
@@ -264,6 +302,100 @@ get headCountArray(){
   return this.HeadCountGroup.get('headcounts') as FormArray;
 }
 
+//........................generateStatesFormData...........................
+
+initStatesForm(){
+  this.StatesGroup = this.FormBuilder.group({
+  productId: "1",
+  productName: "Komrisk",
+  states: this.FormBuilder.array([])
+  })
+}
+
+StatesFromGroup(formSingleData:any){
+  return this.FormBuilder.group({
+    stateRange: [formSingleData.stateRange],
+    stateRangeValue: [formSingleData.stateRangeValue]
+    });
+}
+
+
+generateStatesFormData(formDta:any){
+  let dataContener = this.StatesArray;
+  console.log("jjjjjjjjjj--",formDta);
+  for(let i=0;i<formDta.length;i++){
+    dataContener.push(this.StatesFromGroup(formDta[i]));
+  }
+  console.log("States--",this.StatesArray);  
+}
+
+get StatesArray(){
+  return this.StatesGroup.get('states') as FormArray;
+}
+
+//...............Listing Status ...................
+
+initListingStatusForm(){
+  this.ListingStatusFormGroup = this.FormBuilder.group({
+  productId: "1",
+  productName: "Komrisk",
+  listingStatus: this.FormBuilder.array([])
+  })
+}
+
+listingStatusFromGroup(formSingleData:any){
+  return this.FormBuilder.group({
+    listingId: [formSingleData.listingId],
+    listingType: [formSingleData.listingType],
+    listingValue: [formSingleData.listingValue]
+  });
+}
+
+
+generateListingStatusFormData(formDta:any){
+  let dataContener = this.listingStatusArray;
+  console.log("jjjjjjjjjj--",formDta);
+  for(let i=0;i<formDta.length;i++){
+    dataContener.push(this.listingStatusFromGroup(formDta[i]));
+  }
+  console.log("Listing States--",this.listingStatusArray);  
+}
+
+get listingStatusArray(){
+  return this.ListingStatusFormGroup.get('listingStatus') as FormArray;
+}
+
+//...................................TypeOfIndustry..............
+
+initTypeOfIndustryForm(){
+  this.TypeOfIndustryFormGroup = this.FormBuilder.group({
+  productId: "1",
+  productName: "Komrisk",
+  industryTypes: this.FormBuilder.array([])
+  })
+}
+
+typeOfIndusFromGroup(formSingleData:any){
+  return this.FormBuilder.group({
+    industryTypeName: [formSingleData.industryTypeName],
+    industryTypeValue: [formSingleData.industryTypeValue]
+  });
+}
+
+
+generateTypeOfIndustryFormData(formDta:any){
+  let dataContener = this.indusTypeArray;
+  console.log("jjjjjjjjjj--",formDta);
+  for(let i=0;i<formDta.length;i++){
+    dataContener.push(this.typeOfIndusFromGroup(formDta[i]));
+  }
+  console.log("type--",this.indusTypeArray);  
+}
+
+get indusTypeArray(){
+  return this.TypeOfIndustryFormGroup.get('industryTypes') as FormArray;
+}
+
 
 
 
@@ -274,7 +406,7 @@ get headCountArray(){
 
 companyTypeUpdate(dataForm: any){
   console.log("calculationForm--",dataForm.value);
-  this.apiService.updateCompanyTypeData(dataForm.value).subscribe(res=>{
+  this.apiService.updateCompanyTypeDataUpdateApi(dataForm.value).subscribe(res=>{
       if(res){
         this.getCompanyTypeData();
         this.initCompanyTypeFrom();
@@ -283,9 +415,9 @@ companyTypeUpdate(dataForm: any){
 
   }
 
-  entitiesUpdate(dataForm: any){
-    console.log("entitiesUpdate--",dataForm.value);
-    this.apiService.entitiesData(dataForm.value).subscribe(res=>{
+  companyRevenueUpdate(dataForm: any){
+    console.log("company revenue--",dataForm.value);
+    this.apiService.companyRevenueUpdateApi(dataForm.value).subscribe(res=>{
         if(res){
           this.getCompanyTypeData();
           this.initCompanyTypeFrom();
@@ -293,6 +425,72 @@ companyTypeUpdate(dataForm: any){
       })
   
     }
+
+  entitiesUpdate(dataForm: any){
+    console.log("entitiesUpdate--",dataForm.value);
+    this.apiService.entitiesDataUpdateApi(dataForm.value).subscribe(res=>{
+        if(res){
+          this.getEntitiesData();
+          this.iniEntitiesForm();
+        }
+      })
+  
+    }
+    typeOfIndustryUpdate(dataForm: any){
+      console.log("typeOfIndustryUpdate--",dataForm.value);
+      this.apiService.typeOfIndustryDataUpdateApi(dataForm.value).subscribe(res=>{
+          if(res){
+            this.getIndustryTypeList();
+            this.initTypeOfIndustryForm();
+          }
+        })
+    
+      }
+
+      StatesUpdate(dataForm: any){
+        console.log("StatesUpdate--",dataForm.value);
+        this.apiService.StatesDataUpdateApi(dataForm.value).subscribe(res=>{
+            if(res){
+              this.getNoOfStates();
+              this.initStatesForm();
+            }
+          })
+      
+        }
+
+        listingStatusUpdate(dataForm: any){
+          console.log("ListingStatusUpdate--",dataForm.value);
+          this.apiService.listingUpdateApi(dataForm.value).subscribe(res=>{
+              if(res){
+                this.getListingStatusList();
+                this.initListingStatusForm();
+              }
+            })
+        
+          }
+
+          headCountUpdate(dataForm: any){
+            console.log("HeadCountUpdate--",dataForm.value);
+            this.apiService.headCountUpdateApi(dataForm.value).subscribe(res=>{
+                if(res){
+                  this.getHeadCountData();
+                  this.initHeadCountForm();
+                }
+              })
+          
+            }
+
+            legalStructureUpdate(dataForm: any){
+              console.log("HeadCountUpdate--",dataForm.value);
+              this.apiService.legalStractureUpdateApi(dataForm.value).subscribe(res=>{
+                  if(res){
+                    this.getLegalStractureData();
+                    this.initLegalStractureForm();
+                  }
+                })
+            
+              }
+  
 
 
 }

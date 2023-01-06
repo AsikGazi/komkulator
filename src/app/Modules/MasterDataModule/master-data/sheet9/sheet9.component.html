@@ -54,7 +54,7 @@
                 </mat-panel-title>
                 
               </mat-expansion-panel-header>
-              <form [formGroup]="CompanyRevenueFormGroup">
+              <form [formGroup]="CompanyRevenueFormGroup" (ngSubmit)="companyRevenueUpdate(CompanyRevenueFormGroup)">
               <table>
                 <thead>
                     <tr class="table-container-top2">
@@ -93,7 +93,7 @@
           </mat-panel-title>
            
         </mat-expansion-panel-header>
-        <form [formGroup]="HeadCountGroup">
+        <form [formGroup]="HeadCountGroup" (ngSubmit)="headCountUpdate(HeadCountGroup)">
         <table>
             <thead>
                 <tr class="table-container-top2">
@@ -130,7 +130,7 @@
           </mat-panel-title>
            
         </mat-expansion-panel-header>
-        <form [formGroup]="LegalStractureFormGroup">
+        <form [formGroup]="LegalStractureFormGroup" (ngSubmit)="legalStructureUpdate(LegalStractureFormGroup)">
         <table> 
             <thead>
                 <tr class="table-container-top2">
@@ -139,7 +139,7 @@
                 </tr>
             </thead>
             <tbody formArrayName="legalStructures" *ngFor="let tableObj of legalStractureArray.controls let i=index">
-                <tr>
+                <tr [formGroupName]="i">
                     <td class="text-table-value" data-label="NA">{{tableObj.get('structureType')?.value}}</td>
                     <td data-label="NA">
                     <div class="input-box text-align-center">
@@ -154,7 +154,7 @@
         <div class="boader">
             <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
             <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <button mat-raised-button class="button" color="primary" type="submit">Check</button>
+            <button mat-raised-button class="button" color="primary" type="submit">Update</button>
           </div>
         </form>
              </mat-expansion-panel>
@@ -163,10 +163,11 @@
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Legal structure of the Organisation
+            Listing status of the Company
           </mat-panel-title>
            
         </mat-expansion-panel-header>
+        <form [formGroup]="ListingStatusFormGroup" (ngSubmit)="listingStatusUpdate(ListingStatusFormGroup)">
         <table>
             <thead>
                 <tr class="table-container-top2">
@@ -174,23 +175,13 @@
                     <th scope="col">Value</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="text-table-value" data-label="NA">Public Limited Company</td>
+            <tbody formArrayName="listingStatus" *ngFor="let tableObj of listingStatusArray.controls let i=index">
+                <tr [formGroupName]="i">
+                    <td class="text-table-value" data-label="NA">{{tableObj.get('listingType')?.value}}</td>
                     <td data-label="NA">
                     <div class="input-box text-align-center">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
-                        </div>
-                    </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-table-value" data-label="NA">Private Limited Company</td>
-                    <td data-label="NA">
-                    <div class="input-box text-align-center">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Text input" value="1.75">
+                            <input type="text" class="form-control" formControlName="listingValue">
                         </div>
                     </div>
                     </td>
@@ -198,20 +189,22 @@
             </tbody>
         </table>
         <div class="boader">
-            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+            <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
             <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <button mat-raised-button class="button" color="primary" type="button">Check</button>
+            <button mat-raised-button class="button" color="primary" type="submit">Update</button>
           </div>
-        </mat-expansion-panel> 
+        </form>
+    </mat-expansion-panel>
     
              <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            No of Entites
+             No of States
           </mat-panel-title>
            
         </mat-expansion-panel-header>
+        <form [formGroup]="StatesGroup" (ngSubmit)="StatesUpdate(StatesGroup)">
         <table>
             <thead>
                 <tr class="table-container-top2">
@@ -219,13 +212,13 @@
                     <th scope="col">Value</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="text-table-value" data-label="NA">1 entity</td>
+            <tbody formArrayName="states" *ngFor="let tableObj of StatesArray.controls let i=index">
+                <tr [formGroupName]="i">
+                    <td class="text-table-value" data-label="NA">{{tableObj.get('stateRange')?.value}}</td>
                     <td data-label="NA">
                     <div class="input-box text-align-center">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Text input" value="1">
+                            <input type="text" class="form-control" formControlName="stateRangeValue">
                         </div>
                     </div>
                     </td>
@@ -233,11 +226,12 @@
             </tbody>
         </table>
         <div class="boader">
-            <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+            <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
             <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <button mat-raised-button class="button" color="primary" type="button">Check</button>
+            <button mat-raised-button class="button" color="primary" type="submit">Update</button>
           </div>
-            </mat-expansion-panel>
+        </form>
+    </mat-expansion-panel>
     
             <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
@@ -256,12 +250,50 @@
                 </tr>
             </thead>
             <tbody formArrayName="entities" *ngFor="let tableObj of entitiesArray.controls let i=index">
-                <tr>
+                <tr [formGroupName]="i">
                     <td class="text-table-value" data-label="NA">{{tableObj.get('entityRange')?.value}}</td>
                     <td data-label="NA">
                     <div class="input-box text-align-center">
                         <div class="form-group">
                             <input type="text" class="form-control" formControlName="entityRangeValue">
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="boader">
+            <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+            <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button mat-raised-button class="button" color="primary" type="submit">Update</button>
+          </div>
+        </form>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Type of Industry
+          </mat-panel-title>
+           
+        </mat-expansion-panel-header>
+        <form [formGroup]="TypeOfIndustryFormGroup" (ngSubmit)="typeOfIndustryUpdate(TypeOfIndustryFormGroup)">
+        <table>
+            <thead>
+                <tr class="table-container-top2">
+                    <th scope="col" class="w-70">Name</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody formArrayName="industryTypes" *ngFor="let tableObj of indusTypeArray.controls let i=index">
+                <tr [formGroupName]="i">
+                    <td class="text-table-value" data-label="NA">{{tableObj.get('industryTypeName')?.value}}</td>
+                    <td data-label="NA">
+                    <div class="input-box text-align-center">
+                        <div class="form-group">
+                            <input type="text" class="form-control" formControlName="industryTypeValue">
                         </div>
                     </div>
                     </td>
