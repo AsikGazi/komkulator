@@ -23,6 +23,7 @@ mat-card{
 }
 .questionMarkButton{
     width: 0px;
+    top: 5px;
     color: rgb(51, 194, 238);
     border-color: rgb(253, 254, 255);
 }
@@ -34,7 +35,7 @@ mat-card{
     padding: 0 0px;
 }
 .mat-icon {
-    height: 40px;
+    height: 24px;
 }
 .totalCalculatedPrice{
     

@@ -41,7 +41,7 @@
 
           </div>
 
-          <div class="form-group">
+          <div class="form-group" style="padding-left: 18px;">
             <mat-form-field appearance="fill">
               <mat-label>Select Industry of operation</mat-label>
               <input matInput formControlName="operatingIndustries" class="from-control" name="operatingIndustries" required>
@@ -59,7 +59,8 @@
               </mat-select>
       
             </mat-form-field>
-            <button mat-stroked-button class="questionMarkButton" (click)="openDialog()"><mat-icon class="mat-icon" matPrefix> question_mark_sharp </mat-icon></button>
+            <!-- <button mat-stroked-button class="questionMarkButton" (click)="openDialog()"><mat-icon class="mat-icon" matPrefix (click)="openDialog()"> question_mark_sharp </mat-icon></button> -->
+            <span class="questionMarkButton" (click)="openDialog()"><mat-icon class="mat-icon " matPrefix> question_mark_sharp </mat-icon></span>
           </div>
 
           <div class="form-group">

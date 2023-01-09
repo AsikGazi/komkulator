@@ -7,7 +7,7 @@
         <table>
             <thead>
             <tr>
-                <th width="50%">Nmae</th>
+                <th width="50%">Name</th>
                 <th width="50%">Value</th>
             </tr>
             </thead>
@@ -45,39 +45,30 @@
                     <td><input type="text" formControlName="nameOfTheClint" value="ABC pvt"></td>
                 </tr>
                 <tr>
-                    <td>Deploymenat Model</td>
+                    <td>Deployment Model</td>
                     <td>
                         <select formControlName="deploymentModel" selected="deploymentModel">
                         <option value="Cloud">Cloud</option>
-                        <option value="Onside">Onsite</option>
+                        <option value="Onsite">Onsite</option>
                       </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>Man day's for content customisation/creation/publishing compliances</td>
+                    <td>Man Days for Content Customization/ Creation/Publishing Compliances</td>
                     <td>{{tableObj.get('manDays')?.value}} days</td>
                 </tr>
                 <tr>
-                    <td>Men's day effort required for content update for the client per year</td>
+                    <td>Man Days effort required for content updates for the client per year</td>
                     <td>{{tableObj.get('manDaysEffort')?.value}} days</td>
                 </tr>
                 <tr>
-                    <td>In case deployment model is onside what is your IT effort estimate</td>
+                    <td>In case deployment model is onsite what is your IT effort estimate</td>
                     <td>
                         <select class="dropDown" formControlName="itEffort" selected="itEffort">
                             <option value="High">High</option>
                             <option value="Medium">Medium</option>
                             <option value="Standard">Standard</option>
                         </select> effort 
-                    </td>
-                </tr>
-                <tr>
-                    <td>License fee Moratarium in months</td>
-                    <td>
-                        <select class="dropDown" formControlName="licenceFee">
-                            <option value="No" selected>No</option>
-                            <option value="Yes">Yes</option>
-                        </select>
                     </td>
                 </tr>
                 <tr>
@@ -107,10 +98,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Cost of Content prepared by external consultant</td>
-                    
-                </tr>
-                <tr>
                     <td>Productivity %</td>
                     <td><input type="text"  formControlName="productivityPercent"></td>
                 </tr>
@@ -119,7 +106,7 @@
                     <td><input type="text" formControlName="occupancyPercent"></td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td>Probability %</td>
                     <td>{{tableObj.get('probabilityPercent')?.value}}</td>
                 </tr>
                 <tr>
