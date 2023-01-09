@@ -99,7 +99,7 @@
                   </mat-card>
                   <mat-card>
                      <div class="box">
-                        <div class="col-sm-10 blue-ribon">Total Cost for Content Updates</div>
+                        <div class="col-sm-10 blue-ribon">Total Cost for Content Updates(INR)</div>
                         <div class="col-sm-2 blue-ribon">{{totalContentCost | number}}</div>
                      </div>
                      <div class="buttonDiv">
@@ -206,7 +206,7 @@
                   </mat-card>
                   <mat-card>
                      <div class="box">
-                        <div class="col-sm-10 blue-ribon">Total Cost for Content Updates</div>
+                        <div class="col-sm-10 blue-ribon">Total Cost for Content Updates(INR)</div>
                         <div class="col-sm-2 blue-ribon">{{totalContentUpdateCost | number}}</div>
                      </div>
                      <div class="buttonDiv">
@@ -287,7 +287,7 @@
                   <br>
                   <br>
                   <div class="box">
-                     <div class="col-sm-10 blue-ribon">Number of days available per month per resource</div>
+                     <div class="col-sm-10 blue-ribon">Number of days available per month per resource(Days)</div>
                      <div class="col-sm-2 blue-ribon">{{AdminData[0].manDaysEffort | number:'1.0-0'}}</div>
                   </div>
                   <div class="buttonDiv">
@@ -341,7 +341,7 @@
                
                <mat-card>
                   <div class="box">
-                     <div class="col-sm-10 blue-ribon">Total Cost for Content Updates</div>
+                     <div class="col-sm-10 blue-ribon">Total Cost for Content Updates(INR)</div>
                      <div class="col-sm-2 blue-ribon">{{costPerLicensePerAnnum | number}}</div>
                   </div>
                   <div class="buttonDiv">
@@ -462,7 +462,7 @@
                </mat-card>
                <mat-card *ngFor="let tbleObj of appManagementArray.controls">
                   <div class="box">
-                     <div class="col-sm-10 blue-ribon">Cost Per license per annum</div>
+                     <div class="col-sm-10 blue-ribon">Cost Per license per annum(INR)</div>
                      <div class="col-sm-2 blue-ribon">{{(tbleObj.get('costPerLicense')?.value)*12}}</div>
                   </div>
                   <div class="buttonDiv">
@@ -538,7 +538,7 @@
                </mat-card>
                <mat-card *ngFor="let val of hostingChargeArray.controls">
                   <div class="box">
-                     <div class="col-sm-10 blue-ribon">Cost per license per annum</div>
+                     <div class="col-sm-10 blue-ribon">Cost per license per annum(INR)</div>
                      <div class="col-sm-2 blue-ribon">{{(val.get('costPerLicense')?.value)*12}}</div>
                   </div>
                   <div class="buttonDiv">
@@ -656,11 +656,11 @@
                   </mat-card>
                   <mat-card *ngFor="let tableObj of softwerDevelopmentArray.controls;">
                      <div class="box">
-                        <div class="col-sm-10 blue-ribon">Software Development Cost Capitalised</div>
+                        <div class="col-sm-10 blue-ribon">Software Development Cost Capitalised(INR)</div>
                         <div class="col-sm-2 blue-ribon">{{tableObj.get('contentCostCapitalised')?.value | number}}</div>
                      </div>
                      <div class="box">
-                        <div class="col-sm-10 blue-ribon">Cost per license per annum</div>
+                        <div class="col-sm-10 blue-ribon">Cost per license per annum(INR)</div>
                         <div class="col-sm-2 blue-ribon">{{tableObj.get('paymentToIQSS')?.value | number}}</div>
                      </div>
                      <div class="buttonDiv">
@@ -723,7 +723,7 @@
                </mat-card>
                <mat-card>
                      <div class="box" *ngFor="let tableObj of softwerDevelopmentArray.controls;let i=index">
-                        <div class="col-sm-10 blue-ribon">Content Cost Capitalised</div>
+                        <div class="col-sm-10 blue-ribon">Content Cost Capitalised(INR)</div>
                         <div class="col-sm-2 blue-ribon">{{tableObj.get('contentCostCapitalised')?.value | number}}</div>
                      </div>
                   <div class="buttonDiv">
