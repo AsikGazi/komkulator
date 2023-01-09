@@ -18,7 +18,7 @@
                         <h3 class="m-0">Man Days effort for customization per new client (in days)</h3>
                      </div>
                      <div class="blue-txt-box1">
-                        <h3 class="m-0">260</h3>
+                        <h3 class="m-0">{{AdminData[0].manDays | number:'1.0-0'}}</h3>
                      </div>
                   </div>
                   <mat-card>
@@ -31,8 +31,8 @@
                               <th scope="col">Ratio</th>
                               <th scope="col">Number of Man Days</th>
                               <th scope="col">Man Month</th>
-                              <th scope="col">Monthly CTC</th>
-                              <th scope="col">Total</th>
+                              <th scope="col">Monthly CTC(INR)</th>
+                              <th scope="col">Total(INR)</th>
                            </tr>
                         </thead>
                         <tbody formArrayName="contentCustomizations">
@@ -66,8 +66,7 @@
                                  <div class="fromContent">
                                     <mat-card-content>
                                        <div>
-                                          <!-- <h2>{{tbleObj.get('occupancyPercent')?.value}}</h2> -->
-                                          <h2>18.33</h2>
+                                          <h2>{{AdminData[0].daysAvailable | number:'1.0-0'}}</h2>
                                        </div>
                                     </mat-card-content>
                                  </div>
@@ -92,7 +91,7 @@
                      </mat-card-content>
                      <div class="blue-ribon2"></div>
                      <div class="boader">
-                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetForm()">Reset</button>
                         <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <button mat-raised-button class="button" color="primary" type="submit">Update</button>
                      </div>
@@ -104,9 +103,9 @@
                         <div class="col-sm-2 blue-ribon">{{totalContentCost | number}}</div>
                      </div>
                      <div class="buttonDiv">
-                        <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                        <!-- <button mat-raised-button class="button" color="primary" type="button">Save</button>
                         <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                        <button mat-raised-button class="button" color="basic" type="button">Cancel</button> -->
                      </div>
                   </mat-card>
                </div>
@@ -120,10 +119,10 @@
                   </div>
                   <div class="content-eliment">
                      <div class="txt-box1">
-                        <h3 class="m-0">Man Days effort required for updates per client Per Year</h3>
+                        <h3 class="m-0">Man Days effort required for updates per client Per Year(in days)</h3>
                      </div>
                      <div class="blue-txt-box1">
-                        <h3 class="m-0">52</h3>
+                        <h3 class="m-0">{{AdminData[0].manDaysEffort | number:'1.0-0'}}</h3>
                      </div>
                   </div>
                   <mat-card>
@@ -137,8 +136,8 @@
                               <th scope="col">Number of Man Days</th>
                               <th scope="col">Man Month</th>
                               <th scope="col">Monthly Payout</th>
-                              <th scope="col">Monthly CTC</th>
-                              <th scope="col">Total</th>
+                              <th scope="col">Monthly CTC(INR)</th>
+                              <th scope="col">Total(INR)</th>
                            </tr>
                         </thead>
                         <tbody formArrayName="contentUpdates">
@@ -174,7 +173,7 @@
                                  <div class="fromContent">
                                     <mat-card-content>
                                        <div>
-                                          <h2>18.33</h2>
+                                          <h2>{{AdminData[0].daysAvailable | number:'1.0-0'}}</h2>
                                        </div>
                                     </mat-card-content>
                                  </div>
@@ -199,7 +198,7 @@
                      </mat-card-content>
                      <div class="blue-ribon2"></div>
                      <div class="boader">
-                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetForm()">Reset</button>
                         <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <button mat-raised-button class="button" color="primary" type="submit" >Update</button>
                      </div>
@@ -211,91 +210,40 @@
                         <div class="col-sm-2 blue-ribon">{{totalContentUpdateCost | number}}</div>
                      </div>
                      <div class="buttonDiv">
-                        <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                        <!-- <button mat-raised-button class="button" color="primary" type="button">Save</button>
                         <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                        <button mat-raised-button class="button" color="basic" type="button">Cancel</button> -->
                      </div>
                   </mat-card>
                </div>
             </mat-tab>
             <!-- Content update -- end--------->
             <!-- Customer support -- start--------->
+
+            
             <mat-tab label="Customer support">
                <div class="tab__content">
                   <div class="blue-ribon">
                      Customer Support - Cost per license per annum
                   </div>
                </div>
-               <form [formGroup]="customerSupportForm" (ngSubmit)="customerSupportUpdate(customerSupportForm)">
-               <div class="content-eliment">
-                  <div class="txt-box1 mb-1">
-                     <h3 class="m-0">Number of calls per user per month</h3>
-                  </div>
-                  <div class="blue-txt-box1 mb-1 pb-1 pt-1">
-                     <div class="form-group m-0">
-                        <input type="text" class="thirdTabTextFild" [(value)]="AllCustomerSupportData[0].callsPerUser">
-                     </div>
-                  </div>
-                  <div class="txt-box1 mt-1">
-                     <h3 class="m-0">Standard time required per call in Mins</h3>
-                  </div>
-               </div>
-               <div class="blue-txt-box1 mt-1 pb-1 pt-1">
-                  <div class="form-group m-0">
-                     <input type="text" class="thirdTabTextFild" [(value)]="AllCustomerSupportData[0].timePerCall" >
-                  </div>
-               </div>
-               <mat-card-subtitle>
-                  <div class="resultDiv1" *ngFor="let val of marketingSpendFormArray.controls">
-                     <div class="resltLable1">Marketing spend per Komrisk Client per annum</div>
-                     <div class="resltValue1">{{val.get('marketingSpendPerYear')?.value}}</div>
-                  </div>
-               </mat-card-subtitle>
-               <mat-card-content class="card2">
-                  <mat-grid-list class="belowTable2" cols="2" rowHeight="3:1">
-                     <mat-grid-tile>
-                        <div class="fromFild">
-                           <mat-card-header class="header1">
-                              <h1>Productivity %</h1>
-                           </mat-card-header>
-                           <div class="fromContent">
-                              <mat-card-content>
-                                 <div>
-                                    <h2>75%</h2>
-                                 </div>
-                              </mat-card-content>
-                           </div>
-                        </div>
-                     </mat-grid-tile>
-                     <span class="vertical-line"></span>
-                     <mat-grid-tile>
-                        <div class="fromFild">
-                           <mat-card-header class="header2">
-                              <h1 >Required Man Days</h1>
-                           </mat-card-header>
-                           <div class="fromContent">
-                              <mat-card-content>
-                                 <div>
-                                    <h2>0.00</h2>
-                                 </div>
-                              </mat-card-content>
-                           </div>
-                        </div>
-                     </mat-grid-tile>
-                  </mat-grid-list>
-               </mat-card-content>
-               <mat-card>
-                  <table>
+               
+               <mat-card class="customSupportCard">
+                  
+                  <form [formGroup]="customerSupportForm" (ngSubmit)="customerSupportUpdate(customerSupportForm)">
+                  <table class="customSupportTable">
                      <thead>
-                        <tr class="table-container-top2">
+                        <tr class="table-container-top3">
                            <th scope="col">Resource Mix</th>
                            <th scope="col">Content Custom Men</th>
-                           <th scope="col">Ratio</th>
+                           <th >Ratio</th>
                            <th scope="col">Number of Man Days</th>
                            <th scope="col">Man Month</th>
+                           <th scope="col">Call Per User</th>
+                           <th scope="col">Time Per Call</th>
                            <th scope="col">Monthly Payout</th>
-                           <th scope="col">Monthly CTC</th>
-                           <th scope="col">Total</th>
+                           <th scope="col">Monthly CTC(INR)</th>
+                           <th scope="col">Total(INR)</th>
                         </tr>
                      </thead>
                      <tbody formArrayName="customerSupport">
@@ -308,8 +256,18 @@
                                     <input type="text" class="form-control" placeholder="Text input" formControlName="manRatio">
                                  </div>
                               </td>
-                              <td>{{tbleObj.get('noOfManDays')?.value}}</td>
-                              <td>{{tbleObj.get('manMonth')?.value}}</td>
+                              <td>{{tbleObj.get('noOfManDays')?.value| number:'1.0-0'}}</td>
+                              <td>{{tbleObj.get('manMonth')?.value | number:'1.0-0'}}</td>
+                              <td>
+                                 <div >
+                                    <input type="text" class="form-control" formControlName="callsPerUser">
+                                 </div>
+                              </td>
+                              <td >
+                                 <div>
+                                    <input type="text" class="form-control" formControlName="timePerCall">
+                                 </div>
+                              </td>
                               <td>
                                  <div >
                                     <input type="text" class="form-control" formControlName="monthlyPayout">
@@ -317,7 +275,8 @@
                               </td>
                               <td >
                                  <div>
-                                    <input type="text" class="form-control" formControlName="monthlyCtc">
+                                    <!-- <input type="text" class="form-control" formControlName="monthlyCtc"> -->
+                                    {{tbleObj.get('monthlyCtc')?.value}}
                                  </div>
                               </td>
                               <td>{{tbleObj.get('valueForMan')?.value}}</td>
@@ -329,43 +288,86 @@
                   <br>
                   <div class="box">
                      <div class="col-sm-10 blue-ribon">Number of days available per month per resource</div>
-                     <div class="col-sm-2 blue-ribon">18.33</div>
+                     <div class="col-sm-2 blue-ribon">{{AdminData[0].manDaysEffort | number:'1.0-0'}}</div>
                   </div>
                   <div class="buttonDiv">
-                     <button mat-raised-button class="button" color="basic" type="button">Reset</button>
+                     <button mat-raised-button class="button" color="basic" type="button" (click)="resetForm()">Reset</button>
                      <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                      <button mat-raised-button class="button" color="primary" type="submit">Update</button>
                   </div>
-               </mat-card>
                </form>
+               </mat-card>
+
+               <mat-card-content class="card2">
+                  <mat-grid-list class="belowTable2" cols="2" rowHeight="3:1">
+
+                     <mat-grid-tile>
+                        <div class="fromFild">
+                           <mat-card-header class="header1">
+                              <h1>Productivity %</h1>
+                           </mat-card-header>
+                           <div class="fromContent">
+                              <mat-card-content *ngFor="let tbleObj of hostingChargeArray.controls;let i=index">
+                                 <div>
+                                    <h2>{{tbleObj.get('occupancyPercent')?.value}}</h2>
+                                 </div>
+                              </mat-card-content>
+                           </div>
+                        </div>
+                     </mat-grid-tile>
+                     
+                     <span class="vertical-line"></span>
+
+                     <mat-grid-tile>
+                        <div class="fromFild">
+                           <mat-card-header class="header1">
+                              <h1>Required Man Days</h1>
+                           </mat-card-header>
+                           <div class="fromContent">
+                              <mat-card-content *ngFor="let tbleObj of customerSupportArray.controls;let i=index">
+                                 <div *ngIf="i==0">
+                                    <h2>{{tbleObj.get('requiredManDays')?.value | number:'1.1'}}</h2>
+                                 </div>
+                              </mat-card-content>
+                           </div>
+                        </div>
+                     </mat-grid-tile>
+
+                  </mat-grid-list>
+               </mat-card-content>
+
+
+               
+               
                <mat-card>
                   <div class="box">
                      <div class="col-sm-10 blue-ribon">Total Cost for Content Updates</div>
-                     <div class="col-sm-2 blue-ribon">756.36  </div>
+                     <div class="col-sm-2 blue-ribon">{{costPerLicensePerAnnum | number}}</div>
                   </div>
                   <div class="buttonDiv">
-                     <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                     <!-- <button mat-raised-button class="button" color="primary" type="button">Save</button>
                      <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button> -->
                   </div>
                </mat-card>
             </mat-tab>
             <!-- Customer support -- end--------->
             <!-- Application management -- start--------->
             <mat-tab label="Application management">
+               <!-- <form [formGroup]="appManagementForm" (ngSubmit)="updateAppManagement(appManagementForm)"> -->
                <div class="tab__content">
                   <div class="blue-ribon">
                      Application Management - Cost per license per annum
                   </div>
                </div>
                <mat-card>
-                  <form [formGroup]="appManagementForm">
+                <form [formGroup]="appManagementForm" (ngSubmit)="updateAppManagement(appManagementForm)">
                      <div class="content-eliment1">
                         <table>
                            <thead>
                               <tr class="table-container-top2">
-                                 <th scope="col">NA</th>
-                                 <th scope="col">NA</th>
+                                 <th scope="col">Name</th>
+                                 <th scope="col">Value</th>
                               </tr>
                            </thead>
                            <tbody formArrayName="applicationManagements" *ngFor="let tbleObj of appManagementArray.controls;let i=index">
@@ -400,21 +402,37 @@
                                        </div>
                                     </td>
                                  </tr>
+                                 <tr>
+                                    <td  >Cost per license per month</td>
+                                    <td  >
+                                       <div class="input-box">
+                                          <div class="form-group">
+                                             <input type="text" class="form-control" formControlName="costPerLicense">
+                                          </div>
+                                       </div>
+                                    </td>
+                                 </tr>
                               </ng-container>
                            </tbody>
                         </table>
+                        <div class="buttonDiv">
+                           <button mat-raised-button class="button" color="basic" type="button" (click)="resetForm()">Reset</button>
+                           <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                           <button mat-raised-button class="button" color="primary" type="submit">Update</button>                     
+                        </div>
                      </div>
+                    
                      <mat-card-content class="card2">
                         <mat-grid-list class="belowTable2" cols="2" rowHeight="3:1">
                            <mat-grid-tile>
                               <div class="fromFild">
                                  <mat-card-header class="header1">
-                                    <h1>Productivity %</h1>
+                                    <h1>Occupancy %</h1>
                                  </mat-card-header>
                                  <div class="fromContent">
-                                    <mat-card-content>
+                                    <mat-card-content *ngFor="let tbleObj of hostingChargeArray.controls;let i=index">
                                        <div>
-                                          <h2>75%</h2>
+                                          <h2>{{tbleObj.get('occupancyPercent')?.value}}</h2>
                                        </div>
                                     </mat-card-content>
                                  </div>
@@ -423,28 +441,22 @@
                            <span class="vertical-line"></span>
                            <mat-grid-tile>
                               <div class="fromFild">
-                                 <mat-card-header class="header2">
-                                    <h1 >Required Man Days</h1>
+                                 <mat-card-header class="header1">
+                                    <h1>Required Man Days</h1>
                                  </mat-card-header>
                                  <div class="fromContent">
-                                    <mat-card-content>
-                                       <div>
-                                          <h2>0.00</h2>
+                                    <mat-card-content *ngFor="let tbleObj of customerSupportArray.controls;let i=index">
+                                       <div *ngIf="i==0">
+                                          <h2>{{tbleObj.get('requiredManDays')?.value | number:'1.1'}}</h2>
                                        </div>
                                     </mat-card-content>
                                  </div>
                               </div>
                            </mat-grid-tile>
                         </mat-grid-list>
-                        <div class="box">
-                           <div class="col-sm-10 blue-ribon">Number of days available per month per resource</div>
-                           <div class="col-sm-2 blue-ribon">18.33</div>
-                        </div>
-                        <div class="buttonDiv">
-                           <button mat-raised-button class="button" color="basic" type="button">Reset</button>
-                           <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                           <button mat-raised-button class="button" color="primary" type="button">Check</button>
-                        </div>
+                       
+                        
+                       
                      </mat-card-content>
                   </form>
                </mat-card>
@@ -454,13 +466,16 @@
                      <div class="col-sm-2 blue-ribon">{{(tbleObj.get('costPerLicense')?.value)*12}}</div>
                   </div>
                   <div class="buttonDiv">
-                     <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                     <!-- <button mat-raised-button class="button" color="primary" type="submit">Update</button>
                      <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                     <button mat-raised-button class="button" color="basic" type="button" (click)="resetForm()">Cancel</button> -->    
                   </div>
                </mat-card>
+               <!-- </form> -->
             </mat-tab>
             <!-- Application management -- end--------->
+
+
             <!--Hosting Chargest start-->
             <mat-tab label="Hosting charges">
                <div class="">
@@ -489,7 +504,7 @@
                                     </td>
                                  </tr>
                               <tr>
-                                    <td  >Cost per licence per month</td>
+                                    <td  >Number of licenses per server</td>
                                     <td> 
                                        <div class="form-group">
                                           <input type="text" class="form-control" formControlName="licensePerServer">
@@ -497,7 +512,7 @@
                                     </td>
                               </tr>
                               <tr>
-                                    <td>Cost per licence per month</td>
+                                    <td>Occupancy %</td>
                                     <td>
                                        <div class="form-group">
                                           <input type="text" class="form-control" formControlName="occupancyPercent">
@@ -505,7 +520,7 @@
                                     </td>
                               </tr>
                               <tr>
-                                    <td>Cost per licence per month</td>
+                                    <td>Cost per license per month</td>
                                     <td>
                                        <div><h3>{{val.get('costPerLicense')?.value}}</h3></div>
                                     </td>
@@ -515,7 +530,7 @@
                         </table>
                      </div>
                      <div class="buttonDiv">
-                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetForm()">Reset</button>
                         <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <button mat-raised-button class="button" color="primary" type="submit">Update</button>
                      </div>
@@ -527,9 +542,9 @@
                      <div class="col-sm-2 blue-ribon">{{(val.get('costPerLicense')?.value)*12}}</div>
                   </div>
                   <div class="buttonDiv">
-                     <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                     <!-- <button mat-raised-button class="button" color="primary" type="button">Save</button>
                      <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button> -->
                   </div>
                </mat-card>
             </mat-tab>
@@ -565,7 +580,7 @@
                         </table>
                      </div>
                      <div class="buttonDiv">
-                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetForm()">Reset</button>
                         <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <button mat-raised-button class="button" color="primary" type="submit">Update</button>
                      </div>
@@ -633,13 +648,13 @@
                         </table>
                      </div>
                      <div class="buttonDiv">
-                        <button mat-raised-button class="button" color="primary" type="submit">Save</button>
+                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetForm()">Reset</button>
                         <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Cancel</button>
+                        <button mat-raised-button class="button" color="primary" type="submit">Update</button>
                      </div>
                   </form>
                   </mat-card>
-                  <mat-card *ngFor="let tableObj of softwerDevelopmentArray.controls;let i=index">
+                  <mat-card *ngFor="let tableObj of softwerDevelopmentArray.controls;">
                      <div class="box">
                         <div class="col-sm-10 blue-ribon">Software Development Cost Capitalised</div>
                         <div class="col-sm-2 blue-ribon">{{tableObj.get('contentCostCapitalised')?.value | number}}</div>
@@ -649,9 +664,9 @@
                         <div class="col-sm-2 blue-ribon">{{tableObj.get('paymentToIQSS')?.value | number}}</div>
                      </div>
                      <div class="buttonDiv">
-                        <button mat-raised-button class="button" color="primary" type="button">Save</button>
-                        <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                           <!-- <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                           <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                           <button mat-raised-button class="button" color="basic" type="button">Cancel</button> -->
                      </div>
                   </mat-card>
                </div>
@@ -672,8 +687,8 @@
                      <table>
                         <thead>
                            <tr class="table-container-top2">
-                              <th scope="col">NA</th>
-                              <th scope="col">NA</th>
+                              <th scope="col">Financial year</th>
+                              <th scope="col">Amount(INR)</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -707,11 +722,14 @@
                   </div>
                </mat-card>
                <mat-card>
-                  <div class="col-sm-12 blue-ribon">Content Cost Capitalised</div>
+                     <div class="box" *ngFor="let tableObj of softwerDevelopmentArray.controls;let i=index">
+                        <div class="col-sm-10 blue-ribon">Content Cost Capitalised</div>
+                        <div class="col-sm-2 blue-ribon">{{tableObj.get('contentCostCapitalised')?.value | number}}</div>
+                     </div>
                   <div class="buttonDiv">
-                     <button mat-raised-button class="button" color="primary" type="button">Save</button>
+                     <!-- <button mat-raised-button class="button" color="primary" type="button">Save</button>
                      <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button>
+                     <button mat-raised-button class="button" color="basic" type="button">Cancel</button> -->
                   </div>
                </mat-card>
             </mat-tab>
@@ -760,7 +778,7 @@
                      </table>
                   </div>
                   <div class="buttonDiv">
-                     <button mat-raised-button class="button" color="basic" type="button" (click)="resetFrom()">Reset</button>
+                     <button mat-raised-button class="button" color="basic" type="button" (click)="resetForm()">Reset</button>
                      <span style="width: 50px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                      <button mat-raised-button class="button" color="primary" type="submit">Update</button>
                   </div>
@@ -768,8 +786,8 @@
                </mat-card>
                <mat-card *ngFor="let val of marketingSpendFormArray.controls let i=index">
                   <div class="box">
-                     <div class="col-sm-10 blue-ribon">Marketing spend per Komrisk Client per annum</div>
-                     <div class="col-sm-2 blue-ribon">{{(val.get('komriskClients')?.value)*12}}</div>
+                     <div class="col-sm-10 blue-ribon">Marketing spend per Komrisk Client per annum (INR)</div>
+                     <div class="col-sm-2 blue-ribon">{{(val.get('marketingSpendPerYear')?.value)}}</div>
                   </div>
                   <div class="box"></div>
                </mat-card>

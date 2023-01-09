@@ -14,7 +14,7 @@ mat-card{
     width: 100%;
     margin: -1em;
     background-size: cover;
-    background-image: url("../../../assets/img/login-inner-bg.svg");
+    background-image: url("../../../../../assets/img/login-inner-bg.svg");
 }
 .login-img{
     padding-top: 30%;

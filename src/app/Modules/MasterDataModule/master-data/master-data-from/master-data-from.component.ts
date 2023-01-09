@@ -21,6 +21,8 @@ export class MasterDataFromComponent implements OnInit {
   AllDevelopmentAndCostData: any=[];
   AllMarketingSpendData: any=[];
 
+  AdminData : any= [];
+
   public calculationForm!: FormGroup;
   public contentUpdateForm!: FormGroup;
   public customerSupportForm!: FormGroup;
@@ -36,6 +38,7 @@ export class MasterDataFromComponent implements OnInit {
   totalContentCost: any;
   totalContentUpdateCost:any;
   costPerLicensePerAnnum: any;
+
 
 
 
@@ -59,11 +62,12 @@ export class MasterDataFromComponent implements OnInit {
     this.getAllHostingChargesData();
     this.getAllSoftwareUpdatesData();
     this.getAllMarketingSpendData();
+    this.getAdminData();
     
   }
 
-  resetFrom(){
-    console.log("resetFrom--");
+  resetForm(){
+    console.log("resetForm--");
     this.ngOnInit();
   }
 
@@ -153,8 +157,8 @@ generateContentUpdateFormData(contentUpdateData:any){
     for(let i=0; i<this.contentUpdateArray.length;i++){
       this.temp = this.temp + contentUpdateData[i].valueForMan;
     }
-    console.log("totalContentUpdateCost",this.totalContentCost);
     this.totalContentUpdateCost = this.temp;
+    console.log("totalContentUpdateCost",this.totalContentUpdateCost);
   }this.temp=0;
 }
 
@@ -196,7 +200,14 @@ generateCustomerSupportFormData(customerSupportData:any){
   for(let i=0;i<customerSupportData.length;i++){
     data.push(this.getCustomerSupportFormGroup(customerSupportData[i]));
   }
-  console.log("",this.customerSupportArray);  
+  console.log("",this.customerSupportArray);
+  if(this.customerSupportArray){
+    for(let i=0; i<this.customerSupportArray.length;i++){
+      this.temp = this.temp + customerSupportData[i].valueForMan;
+    }
+    this.costPerLicensePerAnnum = (this.temp*12);
+    console.log("totalContentCustomerSupportUpdateCost",this.costPerLicensePerAnnum);
+  }this.temp=0;
 }
 
 get customerSupportArray(){
@@ -443,6 +454,13 @@ get marketingSpendFormArray(){
       this.generateMarketingSpendFormData(this.AllMarketingSpendData);
     })
   }
+
+  getAdminData(){
+    this.apiService.getAdminData().subscribe(res=>{
+      this.AdminData = res;
+      console.log('admin data-',this.AdminData);
+    })
+  }
   // get all tab values end.......................
 
 
@@ -502,6 +520,8 @@ get marketingSpendFormArray(){
                 if(res){
                   this.getAllSoftwareUpdatesData();
                   this.SoftwerDevelopment_Update();
+                  this.getAllSoftwareUpdatesData();
+                    this.Softwer_Update();
                 }
                 
               })
@@ -513,6 +533,8 @@ get marketingSpendFormArray(){
                   if(res){
                     this.getAllSoftwareUpdatesData();
                     this.Softwer_Update();
+                    this.getAllSoftwareUpdatesData();
+                    this.SoftwerDevelopment_Update();
                   }
                   
                 })
@@ -528,6 +550,17 @@ get marketingSpendFormArray(){
                   }
                   
                 })
+            }
+            updateAppManagement(appMangementData: any){
+              console.log("appManage--",appMangementData.value);
+              this.apiService.appManagmentUpdateDataApi(appMangementData.value).subscribe(res=>{
+                  if(res){
+                    // this.getAllAppManagementDat();
+                    // this.appManagement();
+                  }
+                  
+                })
           
             }
+
 }

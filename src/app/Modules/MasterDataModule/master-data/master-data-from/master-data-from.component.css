@@ -67,6 +67,12 @@ mat-card{
     .table-container-top2 th{padding: 1em; width: 90px;
         padding-top: 5px;
         padding-bottom: 5px;}
+        .table-container-top3{border-top-left-radius:5px ;border-top-right-radius:5px ; background:#0276c0 ; padding: 5px 10px !important; color: #ffffff;}
+        .table-container-top3 th{
+            padding: 0em;
+            width: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;}
    
           .form-horizontal .form-group:before{    display: table;
             content: " ";}
@@ -289,4 +295,10 @@ h1 {
     float: left;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+.customSupportCard{
+    margin: 1%;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    margin-top: 4%;
 }

@@ -149,6 +149,10 @@ markatingUpdateDataApi(formData: any): Observable<any>{
   return this.http.put<any>(baseUrl + `/updateMarketingSpend`, formData,{headers: this.getHeaders(this.headers.Authorization)});
 }
 
+appManagmentUpdateDataApi(formData: any): Observable<any>{
+  console.log("-+-appMang",formData)
+  return this.http.put<any>(baseUrl + `/updateAppManagement`, formData,{headers: this.getHeaders(this.headers.Authorization)});
+}
 
 
 // get congetCreationTimeFunction................
