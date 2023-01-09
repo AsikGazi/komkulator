@@ -447,6 +447,13 @@ get marketingSpendFormArray(){
     })
     
   }
+  // getAllDevelopmentAndCostData(){
+  //   this.apiService.getAllDevelopmentAndCostDataApi().subscribe(res=>{
+  //     this.AllDevelopmentAndCostData = res;
+  //     console.log("AllDevelopmentAndCostData--",this.AllDevelopmentAndCostData);
+  //     this.generateSoftwetwerDevelopmentFormData(this.AllDevelopmentAndCostData);
+  //   })
+  // }
   getAllMarketingSpendData(){
     this.apiService.getAllMarketingSpendDataApi().subscribe(res=>{
       this.AllMarketingSpendData = res;
@@ -520,8 +527,7 @@ get marketingSpendFormArray(){
                 if(res){
                   this.getAllSoftwareUpdatesData();
                   this.SoftwerDevelopment_Update();
-                  this.getAllSoftwareUpdatesData();
-                    this.Softwer_Update();
+                  this.Softwer_Update();
                 }
                 
               })
@@ -531,10 +537,9 @@ get marketingSpendFormArray(){
               console.log("calculationForm--",softwerUpdateFormValue.value);
               this.apiService.softwerUpdateDataApi(softwerUpdateFormValue.value).subscribe(res=>{
                   if(res){
-                    this.getAllSoftwareUpdatesData();
-                    this.Softwer_Update();
-                    this.getAllSoftwareUpdatesData();
-                    this.SoftwerDevelopment_Update();
+                  this.getAllSoftwareUpdatesData();
+                  this.SoftwerDevelopment_Update();
+                  this.Softwer_Update();
                   }
                   
                 })
